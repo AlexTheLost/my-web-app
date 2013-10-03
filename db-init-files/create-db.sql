@@ -17,10 +17,17 @@ CREATE TABLE
 		UNIQUE KEY (email)
 		);
 
-INSER INTO users VALUES('alex-nick', 'alex-long', 'pass-12345', 'alex@mail.com');
+-- test data:
+
+-- -- into table users:
+INSERT INTO users (nickname, login, password, email) VALUES('alex', 'alex', '1234', 'alex@mail.com');
+INSERT INTO users (nickname, login, password, email) VALUES('pavel', 'pavel', 'pavel1999', 'pavel@mail.com');
+INSERT INTO users (nickname, login, password, email) VALUES('oleg', 'oleg', '3242', 'ыв@mail.com');
+INSERT INTO users (nickname, login, password, email) VALUES('дима', 'дима', '34', 'dima@mail.com');
 
 -- SELECT DATABASE mywebapp;
+SHOW TABLES;
 DESCRIBE users;
 select * from users;
-SHOW TABLES;
+
 DROP DATABASE mywebapp;
