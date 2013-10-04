@@ -5,21 +5,22 @@
     <artifactId>alex-belkevich-course</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
+    <url>http://maven.apache.org</url>
 
-
+    <repositories>
+        <repository>
+            <id>JBoss</id>
+            <layout>default</layout>
+            <url>https://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+        </repository>
+    </repositories>
+    
     <dependencies>
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>3.5.5-Final</version>
         </dependency>
     </dependencies>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.hibernate</groupId>
-                <artifactId>hibernate-core</artifactId>
-                <version>3.6.10.Final</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+
 </project>
