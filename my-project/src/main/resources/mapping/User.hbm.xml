@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="course.data.entity.User" table="users" catalog="mywebapp">
+        <id name="idUser" type="java.lang.Long" access="field">
+            <column name="id_user" />
+            <generator class="native" />
+        </id>
+        <property name="nickName" type="string">
+            <column name="nick_name" length="30" not-null="true"
+                unique="true" />
+        </property>
+        <property name="login" type="string">
+            <column name="login" length="30" not-null="true"
+                unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="30" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="30" not-null="true"
+                unique="true" />
+        </property>
+        <property name="role">
+            <column name="role" length="30" not-null="true" />
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">course.data.Role</param>
+            </type>
+        </property>
+    </class>
+</hibernate-mapping>
