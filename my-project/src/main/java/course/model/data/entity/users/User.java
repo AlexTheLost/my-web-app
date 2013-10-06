@@ -1,10 +1,14 @@
 package course.model.data.entity.users;
 
 import java.io.Serializable;
+
 import course.model.data.entity.users.fields.Role;
 import course.model.data.entity.users.fields.Language;
 import course.model.data.entity.users.fields.Stile;
+import course.model.data.entity.avatars.Avatar;
+import course.model.data.entity.categories.Category;
 import course.model.data.entity.events.Event;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,7 +26,9 @@ public class User implements Serializable {
     private Stile stile = Stile.LIGTH;
     private int idAvatar = 0;
     private String shortDescription;
-    private Set<Event> userEvents = new HashSet<Event>();
+    private Set<Event> events = new HashSet<Event>();
+    private Set<Category> categories = new HashSet<Category>();
+    private Set<Avatar> avatars = new HashSet<Avatar>();
 
     public User() {
     }
@@ -114,12 +120,28 @@ public class User implements Serializable {
         this.shortDescription = shortDescription;
     }
 
-    public Set<Event> getUserEvents() {
-        return this.userEvents;
+    public Set<Event> getEvents() {
+        return this.events;
     }
 
-    public void setUserEvents(Set<Event> userEvents) {
-        this.userEvents = userEvents;
+    public void setEvents(Set<Event> userEvents) {
+        this.events = userEvents;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
+
+    public Set<Category> getCategories() {
+        return this.categories;
+    }
+
+    public void setAvatars(Set<Avatar> avatars) {
+        this.avatars = avatars;
+    }
+
+    public Set<Avatar> getAvatars() {
+        return this.avatars;
     }
 
     @Override
@@ -134,7 +156,7 @@ public class User implements Serializable {
         result += "stile: " + stile.name() + ", ";
         result += "idAvatar: " + idAvatar + ", ";
         result += "shortDescription: " + shortDescription + ", ";
-        result += "userEvents: " + userEvents + ";";
+        result += "userEvents: " + events + ";";
         return result;
     }
 }

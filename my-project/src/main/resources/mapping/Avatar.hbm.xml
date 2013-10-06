@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="course.model.data.entity.avatars.Avatar" table="avatars"
+        catalog="mywebapp">
+        <id name="idAvatar" type="java.lang.Integer" access="field">
+            <column name="id_avatar" />
+            <generator class="native" />
+        </id>
+        <property name="src" type="string">
+            <column name="src" length="100" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -56,7 +56,7 @@ public class NewTest {
 
         Set<Event> userEvents = new HashSet<Event>();
         userEvents.add(brithday);
-        user.setUserEvents(userEvents);
+        user.setEvents(userEvents);
 
         session.save(user);
         
@@ -74,8 +74,8 @@ public class NewTest {
             e.printStackTrace();
         }
         
-        Set<Event> managerEvents = user.getUserEvents();
-        manager.setUserEvents(managerEvents);
+        Set<Event> managerEvents = user.getEvents();
+        manager.setEvents(managerEvents);
         session.save(manager);
 
         session.getTransaction().commit();

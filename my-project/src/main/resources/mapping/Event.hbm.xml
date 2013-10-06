@@ -24,5 +24,10 @@
         <property name="location" type="string">
             <column name="location" length="100" />
         </property>
+        <set name="categories"
+            table="event_categories" cascade="all">
+            <key column="id_event" />
+            <many-to-many column="id_category" class="course.model.data.entity.categories.Category"/>
+        </set>
     </class>
 </hibernate-mapping>

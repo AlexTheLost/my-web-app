@@ -2,6 +2,10 @@ package course.model.data.entity.events;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import course.model.data.entity.categories.Category;
 
 public class Event implements Serializable {
 
@@ -13,11 +17,12 @@ public class Event implements Serializable {
     private String description;
     private Boolean topicality = true;
     private String location;
+    private Set<Category> categories = new HashSet<Category>();
 
     public void setIdEvent(int idEvent) {
         this.idEvent = idEvent;
     }
-    
+
     public int getIdEvent() {
         return this.idEvent;
     }
@@ -60,6 +65,14 @@ public class Event implements Serializable {
 
     public String getLocation() {
         return this.location;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
+
+    public Set<Category> getCategories() {
+        return this.categories;
     }
 
     @Override
