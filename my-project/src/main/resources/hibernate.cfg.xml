@@ -11,9 +11,8 @@
         <property name="hibernate.connection.password">567832461</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
         <mapping resource="mapping/User.hbm.xml" />
         <mapping resource="mapping/Event.hbm.xml" />
-        <mapping resource="mapping/UsersAtEvents.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

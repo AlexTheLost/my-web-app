@@ -4,7 +4,7 @@
 <hibernate-mapping>
     <class name="course.model.data.entity.users.User" table="users"
         catalog="mywebapp">
-        <id name="idUser" type="java.lang.Long" access="field">
+        <id name="idUser" type="java.lang.Integer" access="field">
             <column name="id_user" />
             <generator class="native" />
         </id>
@@ -41,12 +41,16 @@
                 <param name="enumClass">course.model.data.entity.users.fields.Stile</param>
             </type>
         </property>
-        <property name="idAvatar" type="java.lang.Long">
+        <property name="idAvatar" type="java.lang.Integer">
             <column name="id_avatar" not-null="true" default="0" />
         </property>
         <property name="shortDescription" type="string">
             <column name="short_description" length="200" />
         </property>
-
+        <set name="userEvents"
+            table="user_at_event" cascade="all">
+            <key column="id_user" />
+            <many-to-many column="id_event" class="course.model.data.entity.events.Event"/>
+        </set>
     </class>
 </hibernate-mapping>

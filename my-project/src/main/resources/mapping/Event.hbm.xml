@@ -4,7 +4,7 @@
 <hibernate-mapping>
     <class name="course.model.data.entity.events.Event" table="events"
         catalog="mywebapp">
-        <id name="idEvent" type="java.lang.Long" access="field">
+        <id name="idEvent" type="java.lang.Integer" access="field">
             <column name="id_event" />
             <generator class="native" />
         </id>

@@ -4,12 +4,15 @@ import java.io.Serializable;
 import course.model.data.entity.users.fields.Role;
 import course.model.data.entity.users.fields.Language;
 import course.model.data.entity.users.fields.Stile;
+import course.model.data.entity.events.Event;
+import java.util.HashSet;
+import java.util.Set;
 
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long idUser;
+    private int idUser;
     private String nickName;
     private String login;
     private String password;
@@ -17,9 +20,9 @@ public class User implements Serializable {
     private Role role = Role.USER;
     private Language language = Language.RUSSIAN;
     private Stile stile = Stile.LIGTH;
-    private Long idAvatar = 0L;
+    private int idAvatar = 0;
     private String shortDescription;
-    private final int MAX_LEN_SHORT_DESCRIPTION = 200;
+    private Set<Event> userEvents = new HashSet<Event>();
 
     public User() {
     }
@@ -31,8 +34,12 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public long getIdUser() {
+    public int getIdUser() {
         return this.idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public String getNickName() {
@@ -91,11 +98,11 @@ public class User implements Serializable {
         this.stile = stile;
     }
 
-    public long getIdAvatar() {
+    public int getIdAvatar() {
         return this.idAvatar;
     }
 
-    public void setIdAvatar(long idAvatar) {
+    public void setIdAvatar(int idAvatar) {
         this.idAvatar = idAvatar;
     }
 
@@ -105,6 +112,14 @@ public class User implements Serializable {
 
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
+    }
+
+    public Set<Event> getUserEvents() {
+        return this.userEvents;
+    }
+
+    public void setUserEvents(Set<Event> userEvents) {
+        this.userEvents = userEvents;
     }
 
     @Override
@@ -118,7 +133,8 @@ public class User implements Serializable {
         result += "language: " + language.name() + ", ";
         result += "stile: " + stile.name() + ", ";
         result += "idAvatar: " + idAvatar + ", ";
-        result += "shortDescription: " + shortDescription + ";";
+        result += "shortDescription: " + shortDescription + ", ";
+        result += "userEvents: " + userEvents + ";";
         return result;
     }
 }
