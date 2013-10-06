@@ -1,4 +1,4 @@
-package course.data.entity.users;
+package course.model.data.entity.users.fields;
 
 public enum Language {
     RUSSIAN, ENGLISH

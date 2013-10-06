@@ -1,9 +1,9 @@
 package course.data.entity;
 
 import org.hibernate.Session;
-import course.data.persistence.HibernateUtil;
-import course.data.entity.users.Role;
-import course.data.entity.users.User;
+import course.model.data.persistence.HibernateUtil;
+import course.model.data.entity.users.fields.Role;
+import course.model.data.entity.users.User;
 
 public class EntityTest {
 

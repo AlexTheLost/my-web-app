@@ -1,12 +1,9 @@
-package course.data.entity.users;
+package course.model.data.entity.users;
 
 import java.io.Serializable;
-import course.data.entity.users.Role;
-import course.data.entity.users.Language;
-import course.data.entity.users.Stile;
-
-class BeyondMaximumLength extends Exception {
-}
+import course.model.data.entity.users.fields.Role;
+import course.model.data.entity.users.fields.Language;
+import course.model.data.entity.users.fields.Stile;
 
 public class User implements Serializable {
 
@@ -34,7 +31,7 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public Long getIdUser() {
+    public long getIdUser() {
         return this.idUser;
     }
 
@@ -94,11 +91,11 @@ public class User implements Serializable {
         this.stile = stile;
     }
 
-    public Long getIdAvatar() {
+    public long getIdAvatar() {
         return this.idAvatar;
     }
 
-    public void setIdAvatar(Long idAvatar) {
+    public void setIdAvatar(long idAvatar) {
         this.idAvatar = idAvatar;
     }
 
@@ -106,10 +103,7 @@ public class User implements Serializable {
         return this.shortDescription;
     }
 
-    public void setShortDescription(String shortDescription)
-            throws BeyondMaximumLength {
-        if (shortDescription.length() > MAX_LEN_SHORT_DESCRIPTION)
-            throw new BeyondMaximumLength();
+    public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
     }
 }

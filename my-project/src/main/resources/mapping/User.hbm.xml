@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="course.data.entity.users.User" table="users"
+    <class name="course.model.data.entity.users.User" table="users"
         catalog="mywebapp">
         <id name="idUser" type="java.lang.Long" access="field">
             <column name="id_user" />
@@ -26,19 +26,19 @@
         <property name="role">
             <column name="role" not-null="true" />
             <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">course.data.entity.users.Role</param>
+                <param name="enumClass">course.model.data.entity.users.fields.Role</param>
             </type>
         </property>
         <property name="language">
             <column name="language" not-null="true" />
             <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">course.data.entity.users.Language</param>
+                <param name="enumClass">course.model.data.entity.users.fields.Language</param>
             </type>
         </property>
         <property name="stile">
             <column name="stile" not-null="true" />
             <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">course.data.entity.users.Stile</param>
+                <param name="enumClass">course.model.data.entity.users.fields.Stile</param>
             </type>
         </property>
         <property name="idAvatar" type="java.lang.Long">
