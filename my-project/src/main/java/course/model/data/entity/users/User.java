@@ -106,4 +106,19 @@ public class User implements Serializable {
     public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
     }
+
+    @Override
+    public String toString() {
+        String result = "idUser: " + idUser + ", ";
+        result += "nickName: " + nickName + ", ";
+        result += "login: " + login + ", ";
+        result += "password: " + password + ", ";
+        result += "email: " + email + ", ";
+        result += "role: " + role.name() + ", ";
+        result += "language: " + language.name() + ", ";
+        result += "stile: " + stile.name() + ", ";
+        result += "idAvatar: " + idAvatar + ", ";
+        result += "shortDescription: " + shortDescription + ";";
+        return result;
+    }
 }

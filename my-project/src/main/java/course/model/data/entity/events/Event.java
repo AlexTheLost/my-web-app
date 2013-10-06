@@ -58,4 +58,14 @@ public class Event implements Serializable {
         return this.location;
     }
 
+    @Override
+    public String toString() {
+        String result = "id: " + idEvent + ", ";
+        result += "name: " + name + ", ";
+        result += "date: " + date.toString() + ", ";
+        result += "description: " + description + ", ";
+        result += "topicality: " + topicality + ", ";
+        result += "location: " + location + ";";
+        return result;
+    }
 }
