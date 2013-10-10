@@ -58,11 +58,13 @@
         </div>
     </div>
 
-    <div class="container">
-        <hr>
-        <footer>
-        <p>Alexander&nbsp;Belkevich Coursework&nbsp;2013 at&nbsp;Itransition&nbsp;Company.</p>
-        </footer>
+    <div class="navbar-fixed-bottom row-fluid">
+      <div class="navbar-inner">
+        <div class="container">
+            <hr>
+            <p>Alexander&nbsp;Belkevich Coursework&nbsp;2013 at&nbsp;Itransition&nbsp;Company.</p>
+        </div>
+      </div>
     </div>
 
 </body>
