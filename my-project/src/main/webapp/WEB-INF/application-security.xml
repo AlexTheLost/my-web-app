@@ -11,16 +11,17 @@
     <http auto-config="true">
         <intercept-url pattern="/secure/**" access="ROLE_USER" />
         <intercept-url pattern="/admin/**" access="ROLE_ADMIN" />
+        <intercept-url pattern="login.jsp*"
+            access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <form-login login-page="/signin"
+            authentication-failure-url="/signin-fail"
+            default-target-url="/" always-use-default-target="true" />
     </http>
 
     <authentication-manager>
-        <authentication-provider>
-            <user-service>
-                <user name="admin" password="adminpassword"
-                    authorities="ROLE_USER, ROLE_ADMIN" />
-                <user name="user" password="userpassword"
-                    authorities="ROLE_USER" />
-            </user-service>
+        <authentication-provider
+            user-service-ref="customUserDetailsService">
         </authentication-provider>
     </authentication-manager>
+
 </beans:beans> 
