@@ -12,6 +12,7 @@
         <hibernate.version>4.1.11.Final</hibernate.version>
         <mysql.version>5.1.24</mysql.version>
         <spring.version>3.1.0.RELEASE</spring.version>
+        <springframework.version>3.1.0.RELEASE</springframework.version>
     </properties>
 
     <dependencies>
@@ -82,27 +83,32 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
-            <version>${spring.version}</version>
+            <version>${springframework.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
-            <version>${spring.version}</version>
+            <version>${springframework.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
-            <version>${spring.version}</version>
+            <version>${springframework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${springframework.version}</version>
         </dependency>
 
         <!-- JSTL lib -->
         <dependency>
-            <groupId>javax.servlet</groupId>
+            <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
-            <scope>provided</scope>
         </dependency>
 
     </dependencies>
