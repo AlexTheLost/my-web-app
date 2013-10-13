@@ -48,7 +48,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="jumbotron">
         <div class="container">
             <h1 class="text-center">Welcome to your scheduler!</h1>

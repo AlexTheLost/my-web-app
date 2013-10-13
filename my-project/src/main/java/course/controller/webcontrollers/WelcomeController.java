@@ -1,4 +1,4 @@
-package course.controller;
+package course.controller.webcontrollers;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;

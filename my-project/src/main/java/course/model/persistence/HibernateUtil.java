@@ -1,4 +1,4 @@
-package course.model.data.persistence;
+package course.model.persistence;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

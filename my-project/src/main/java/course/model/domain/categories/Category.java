@@ -1,4 +1,4 @@
-package course.model.data.entity.categories;
+package course.model.domain.categories;
 
 import java.io.Serializable;
 

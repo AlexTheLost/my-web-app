@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="course.model.data.entity.events.Event" table="events"
+    <class name="course.model.domain.events.Event" table="events"
         catalog="mywebapp">
         <id name="idEvent" type="java.lang.Integer" access="field">
             <column name="id_event" />
@@ -27,7 +27,7 @@
         <set name="categories"
             table="event_categories" cascade="all">
             <key column="id_event" />
-            <many-to-many column="id_category" class="course.model.data.entity.categories.Category"/>
+            <many-to-many column="id_category" class="course.model.domain.categories.Category"/>
         </set>
     </class>
 </hibernate-mapping>

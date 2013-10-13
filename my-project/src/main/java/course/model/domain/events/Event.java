@@ -1,11 +1,11 @@
-package course.model.data.entity.events;
+package course.model.domain.events;
 
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import course.model.data.entity.categories.Category;
+import course.model.domain.categories.Category;
 
 public class Event implements Serializable {
 

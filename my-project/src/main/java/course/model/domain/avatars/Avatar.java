@@ -1,4 +1,4 @@
-package course.model.data.entity.avatars;
+package course.model.domain.avatars;
 
 import java.io.Serializable;
 

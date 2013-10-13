@@ -1,13 +1,13 @@
-package course.model.data.entity.users;
+package course.model.domain.users;
 
 import java.io.Serializable;
 
-import course.model.data.entity.users.fields.Role;
-import course.model.data.entity.users.fields.Language;
-import course.model.data.entity.users.fields.Stile;
-import course.model.data.entity.avatars.Avatar;
-import course.model.data.entity.categories.Category;
-import course.model.data.entity.events.Event;
+import course.model.domain.avatars.Avatar;
+import course.model.domain.categories.Category;
+import course.model.domain.events.Event;
+import course.model.domain.users.fields.Language;
+import course.model.domain.users.fields.Role;
+import course.model.domain.users.fields.Stile;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,28 +16,26 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private int idUser;
-    private String nickName;
-    private String login;
-    private String password;
-    private String email;
-    private Role role = Role.USER;
-    private Language language = Language.RUSSIAN;
-    private Stile stile = Stile.LIGTH;
-    private int idAvatar = 0;
-    private String shortDescription;
-    private Set<Event> events = new HashSet<Event>();
-    private Set<Category> categories = new HashSet<Category>();
-    private Set<Avatar> avatars = new HashSet<Avatar>();
+    private int               idUser;
+    private String            name;
+    private String            email;
+    private String            password;
+    private Role              role             = Role.ROLE_USER;
+    private Language          language         = Language.RUSSIAN;
+    private Stile             stile            = Stile.LIGTH;
+    private int               idAvatar         = 0;
+    private String            shortDescription;
+    private Set<Event>        events           = new HashSet<Event>();
+    private Set<Category>     categories       = new HashSet<Category>();
+    private Set<Avatar>       avatars          = new HashSet<Avatar>();
 
     public User() {
     }
 
-    public User(String nickName, String login, String password, String email) {
-        this.nickName = nickName;
-        this.login = login;
-        this.password = password;
+    public User(String name, String email, String password) {
+        this.name = name;
         this.email = email;
+        this.password = password;
     }
 
     public int getIdUser() {
@@ -48,20 +46,12 @@ public class User implements Serializable {
         this.idUser = idUser;
     }
 
-    public String getNickName() {
-        return this.nickName;
+    public String getName() {
+        return this.name;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
-    public String getLogin() {
-        return this.login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -144,19 +134,27 @@ public class User implements Serializable {
         return this.avatars;
     }
 
-    @Override
     public String toString() {
-        String result = "idUser: " + idUser + ", ";
-        result += "nickName: " + nickName + ", ";
-        result += "login: " + login + ", ";
-        result += "password: " + password + ", ";
-        result += "email: " + email + ", ";
-        result += "role: " + role.name() + ", ";
-        result += "language: " + language.name() + ", ";
-        result += "stile: " + stile.name() + ", ";
-        result += "idAvatar: " + idAvatar + ", ";
-        result += "shortDescription: " + shortDescription + ", ";
-        result += "userEvents: " + events + ";";
+        String separator = ", ";
+        String end = ";";
+        String result = "";
+        result += "IdUser: " + getIdUser();
+        result += separator;
+        result += "Name: " + getName();
+        result += separator;
+        result += "Email: " + getEmail();
+        result += separator;
+        result += "Password: " + getPassword();
+        result += separator;
+        result += "Language: " + getLanguage();
+        result += separator;
+        result += "Stile: " + getStile();
+        result += separator;
+        result += "idAvatar: " + getIdAvatar();
+        result += separator;
+        result += "shortDescription: " + getShortDescription();
+        result += end;
         return result;
     }
+
 }
