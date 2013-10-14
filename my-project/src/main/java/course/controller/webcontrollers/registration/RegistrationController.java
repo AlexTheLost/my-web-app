@@ -27,23 +27,28 @@ public class RegistrationController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String processRegistration(RegistrationForm registrationForm,
+    public String processRegistration(ModelMap model, RegistrationForm registrationForm,
             BindingResult result) {
         registrationValidator.validate(registrationForm, result);
         if (result.hasErrors()) {
             return "registration/registration";
         }
+        String userName = registrationForm.getUserName();
+        String email = registrationForm.getEmail();
+        String password = registrationForm.getPassword();
         try {
             UserDao userDao = new UserDaoImpl();
             User user = new User();
-            user.setName(registrationForm.getUserName());
-            user.setEmail(registrationForm.getEmail());
-            user.setPassword(registrationForm.getPassword());
+            user.setName(userName);
+            user.setEmail(email);
+            user.setPassword(password);
             userDao.save(user);
         } catch (Exception ex) {
             ex.printStackTrace();
             return "registration/registration-unsuccessful";
         }
+        model.addAttribute("userName", userName);
+        model.addAttribute("email", email);
         return "registration/registration-success";
     }
 
