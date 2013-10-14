@@ -71,7 +71,7 @@ body {
             <h2 class="form-signin-heading">Please sign in</h2>
             <div>
                 <input id="j_username" name="j_username" size="20" maxlength="50" 
-                    type="text" class="form-control" placeholder="Email address"/>
+                    type="text" class="form-control" placeholder="User name"/>
                 <input id="j_password" name="j_password" size="20" maxlength="50"
                     type="password" class="form-control" placeholder="Password" />
             </div>

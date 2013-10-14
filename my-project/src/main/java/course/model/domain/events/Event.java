@@ -9,8 +9,10 @@ import course.model.domain.categories.Category;
 
 public class Event implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3104381058522843275L;
     private int idEvent;
     private String name;
     private Date date = new Date(new java.util.Date().getTime());

@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 public class Avatar implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8445201483708199471L;
     private int idAvatar;
     private String src;
 
