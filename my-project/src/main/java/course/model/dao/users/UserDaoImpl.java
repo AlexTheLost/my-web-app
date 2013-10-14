@@ -36,25 +36,6 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    // // Non-managed environment idiom
-    // Session sess = factory.openSession();
-    // Transaction tx = null;
-    // try {
-    // tx = sess.beginTransaction();
-    //
-    // // do some work
-    // ...
-    //
-    // tx.commit();
-    // }
-    // catch (RuntimeException e) {
-    // if (tx != null) tx.rollback();
-    // throw e; // or display error message
-    // }
-    // finally {
-    // sess.close();
-    // }
-
     public void update(User user) {
         // TODO Auto-generated method stub
         Session session = sessionFactory.openSession();
@@ -112,6 +93,27 @@ public class UserDaoImpl implements UserDao {
         return user;
     }
 
+    public User findByEmail(String email) {
+        // TODO Auto-generated method stub
+        User user = null;
+        Session session = sessionFactory.openSession();
+        String query = "from User where email = :email";
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Query _query = session.createQuery(query);
+            _query.setParameter("email", email);
+            user = (User) _query.uniqueResult(); 
+            transaction.commit();
+        } catch (RuntimeException ex) {
+            if (transaction != null)
+                transaction.rollback();
+            throw ex;
+        } finally {
+            session.close();
+        }
+        return user;
+    }
     @SuppressWarnings("unchecked")
     public List<User> getAll() {
         List<User> users = null;

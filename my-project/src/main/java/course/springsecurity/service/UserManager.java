@@ -5,23 +5,40 @@ import java.util.HashMap;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import course.springsecurity.domain.User;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import course.model.dao.users.UserDao;
+import course.model.dao.users.UserDaoImpl;
+import course.model.domain.users.User;
+import course.springsecurity.domain.UserDetailsImpl;
 
 @Service
 public class UserManager {
-    private HashMap<String, User> users;
+    UserDao userDao = null;
 
     public UserManager() {
-        users = new HashMap<String, User>();
-        users.put("user", new User("user", "1", "ROLE_USER"));
-        users.put("admin", new User("admin", "2", "ROLE_USER, ROLE_ADMIN"));
+        userDao = new UserDaoImpl();
     }
 
-    public User getUser(String username) throws UsernameNotFoundException {
-        if (!users.containsKey(username)) {
+    public UserDetails getUser(String username)
+            throws UsernameNotFoundException {
+        User user = userDao.findByName(username);
+
+        if (user == null) {
             throw new UsernameNotFoundException(username + " not found");
         }
 
-        return users.get(username);
+        UserDetails userDetails = new UserDetailsImpl(user);
+
+        return userDetails;
+    }
+    
+    public static class Test {
+        public static void main(String[] args) {
+            UserManager um = new UserManager();
+            UserDetails ud = um.getUser("mont");
+            System.out.println("SecureName: " + ud.getUsername());
+            System.out.println("SecurePass: " + ud.getPassword());
+        }
     }
 }

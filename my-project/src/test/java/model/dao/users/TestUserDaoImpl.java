@@ -13,8 +13,8 @@ public class TestUserDaoImpl {
 
         UserDao userDao = new UserDaoImpl();
 
-        // User user = new User("mont", "mont@mail.test", "567567534");
-        // userDao.save(user);
+         User user1 = new User("mont", "mont@mail.test", "567567534");
+         userDao.save(user1);
 
         // User user = userDao.findByName("Pasha");
         // System.out.println(user.getName());
@@ -27,5 +27,9 @@ public class TestUserDaoImpl {
         for (User user : users) {
             System.out.println(user);
         }
+        
+        User user2 = userDao.findByEmail("mont@mail.test");
+        System.out.println(user2);
+        System.out.println("name: " + user2.getName());
     }
 }
