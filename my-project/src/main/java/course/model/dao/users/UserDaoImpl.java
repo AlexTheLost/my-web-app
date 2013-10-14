@@ -3,7 +3,6 @@ package course.model.dao.users;
 import java.util.List;
 
 import org.hibernate.Transaction;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import org.hibernate.Query;
@@ -11,7 +10,7 @@ import org.hibernate.Query;
 import course.model.domain.users.User;
 import course.model.persistence.HibernateUtil;
 
-public class UserDaoImpl implements UserDao {
+public  class UserDaoImpl implements UserDao {
 
     private SessionFactory sessionFactory = null;
 
@@ -20,7 +19,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     public void save(User user) {
-        // TODO Auto-generated method stub
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
@@ -37,7 +35,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     public void update(User user) {
-        // TODO Auto-generated method stub
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
@@ -54,7 +51,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     public void delete(User user) {
-        // TODO Auto-generated method stub
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try {
@@ -72,7 +68,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     public User findByName(String name) {
-        // TODO Auto-generated method stub
         User user = null;
         Session session = sessionFactory.openSession();
         String query = "from User where name = :name";
@@ -81,7 +76,7 @@ public class UserDaoImpl implements UserDao {
             transaction = session.beginTransaction();
             Query _query = session.createQuery(query);
             _query.setParameter("name", name);
-            user = (User) _query.uniqueResult(); 
+            user = (User) _query.uniqueResult();
             transaction.commit();
         } catch (RuntimeException ex) {
             if (transaction != null)
@@ -94,7 +89,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     public User findByEmail(String email) {
-        // TODO Auto-generated method stub
         User user = null;
         Session session = sessionFactory.openSession();
         String query = "from User where email = :email";
@@ -103,7 +97,7 @@ public class UserDaoImpl implements UserDao {
             transaction = session.beginTransaction();
             Query _query = session.createQuery(query);
             _query.setParameter("email", email);
-            user = (User) _query.uniqueResult(); 
+            user = (User) _query.uniqueResult();
             transaction.commit();
         } catch (RuntimeException ex) {
             if (transaction != null)
@@ -114,6 +108,7 @@ public class UserDaoImpl implements UserDao {
         }
         return user;
     }
+
     @SuppressWarnings("unchecked")
     public List<User> getAll() {
         List<User> users = null;
@@ -134,4 +129,55 @@ public class UserDaoImpl implements UserDao {
         return users;
     }
 
+    public boolean nameIsOccupied(String name) {
+        // TODO rewriting HQL
+        User user = null;
+        Session session = sessionFactory.openSession();
+        String query = "from User where name = :name";
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Query _query = session.createQuery(query);
+            _query.setParameter("name", name);
+            user = (User) _query.uniqueResult();
+            transaction.commit();
+        } catch (RuntimeException ex) {
+            if (transaction != null)
+                transaction.rollback();
+            throw ex;
+        } finally {
+            session.close();
+        }
+        if (user != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean emailIsOccupied(String email) {
+        // TODO rewriting HQL
+        User user = null;
+        Session session = sessionFactory.openSession();
+        String query = "from User where email = :email";
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Query _query = session.createQuery(query);
+            _query.setParameter("email", email);
+            user = (User) _query.uniqueResult();
+            transaction.commit();
+        } catch (RuntimeException ex) {
+            if (transaction != null)
+                transaction.rollback();
+            throw ex;
+        } finally {
+            session.close();
+        }
+        if (user != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

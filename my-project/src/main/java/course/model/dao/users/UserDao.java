@@ -16,6 +16,10 @@ public interface UserDao {
     
     public User findByEmail(String email);
     
+    public boolean emailIsOccupied(String email);
+    
+    public boolean nameIsOccupied(String email);
+    
     public List<User> getAll();
 
 }
