@@ -1,4 +1,4 @@
-package course.controller.webcontrollers.registration;
+package course.controller.registration;
 
 public class RegistrationForm {
 

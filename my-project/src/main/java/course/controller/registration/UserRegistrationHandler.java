@@ -1,4 +1,4 @@
-package course.controller.webcontrollers.registration;
+package course.controller.registration;
 
 import org.springframework.validation.BindingResult;
 
