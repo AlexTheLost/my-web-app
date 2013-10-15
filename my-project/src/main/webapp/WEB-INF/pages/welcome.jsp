@@ -39,12 +39,6 @@
         <div class="container pull-right">
             <div class="navbar-header">
                 <div class="navbar-form navbar-right pull-right">
-                    <span style="float: right">
-                        <p>&nbsp;<p>
-                        <a href="?lang=en">en</a> 
-                        |
-                        <a href="?lang=ru">ru</a>
-                    </span>
                     <sec:authorize access="isAuthenticated()">
                         <a class="btn btn-warning" href="<c:url value="/j_spring_security_logout"/>"><spring:message code="label.sign_out"/></a>
                     </sec:authorize>
@@ -52,6 +46,9 @@
                         <a href="signin" class="btn btn-success"><b><spring:message code="label.sign_in"/></b></a>
                         <a href="registration" class="btn btn-primary"><b><spring:message code="label.registration"/></b></a>
                     </sec:authorize>
+                    <span >
+                        <a href="?lang=en">en</a> | <a href="?lang=ru">ru</a>
+                    </span>
                 </div>
             </div>
         </div>
