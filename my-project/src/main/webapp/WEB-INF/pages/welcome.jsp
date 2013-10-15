@@ -2,6 +2,8 @@
 <%@ taglib prefix="sec"
     uri="http://www.springframework.org/security/tags"
 %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
 %>
@@ -27,22 +29,28 @@
     <div class="navbar navbar-fixed-top navbar-inverse">
         <div class="container pull-left">
             <div class="navbar-header">
-                <a class="navbar-brand" href="welcome"><i class="icon-home"></i><b>&nbsp;Home</b></a>
+                <a class="navbar-brand" href="welcome"><i class="icon-home"></i><b>&nbsp;<spring:message code="label.home"/></b></a>
                 <sec:authorize access="isAuthenticated()">
-                    <a class="navbar-brand" href=""><b><i class="icon-calendar"></i>&nbsp;My Event</b></a>
-                    <a class="navbar-brand" href=""><b><i class="icon-pencil"></i>&nbsp;Add Event</b></a>
+                    <a class="navbar-brand" href=""><b><i class="icon-calendar"></i>&nbsp;<spring:message code="label.my_events"/></b></a>
+                    <a class="navbar-brand" href=""><b><i class="icon-pencil"></i>&nbsp;<spring:message code="label.add_event"/></b></a>
                 </sec:authorize>
             </div>
         </div>
         <div class="container pull-right">
             <div class="navbar-header">
                 <div class="navbar-form navbar-right pull-right">
+                    <span style="float: right">
+                        <p>&nbsp;<p>
+                        <a href="?lang=en">en</a> 
+                        |
+                        <a href="?lang=ru">ru</a>
+                    </span>
                     <sec:authorize access="isAuthenticated()">
-                        <a class="btn btn-warning" href="<c:url value="/j_spring_security_logout"/>">Logout</a>
+                        <a class="btn btn-warning" href="<c:url value="/j_spring_security_logout"/>"><spring:message code="label.sign_out"/></a>
                     </sec:authorize>
                     <sec:authorize access="isAnonymous()">
-                        <a href="signin" class="btn btn-success"><b>Sign in</b></a>
-                        <a href="registration" class="btn btn-primary"><b>Registration</b></a>
+                        <a href="signin" class="btn btn-success"><b><spring:message code="label.sign_in"/></b></a>
+                        <a href="registration" class="btn btn-primary"><b><spring:message code="label.registration"/></b></a>
                     </sec:authorize>
                 </div>
             </div>
