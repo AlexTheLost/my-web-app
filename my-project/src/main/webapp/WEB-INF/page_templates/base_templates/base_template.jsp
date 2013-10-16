@@ -11,7 +11,7 @@
         <title>
             <tiles:getAsString name="title" />
         </title>
-        <tiles:insertAttribute name="head_base" />
+        <tiles:insertAttribute name="head" />
     </head>
     <body>
         <tiles:insertAttribute name="header" />

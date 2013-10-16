@@ -11,17 +11,6 @@
 
     <context:component-scan base-package="course" />
 
-<!--     <bean
-        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix">
-            <value>/WEB-INF/</value>
-        </property>
-        <property name="suffix">
-            <value>.jsp</value>
-        </property>
-        <property name="order" value="2" />
-    </bean> -->
-
     <bean id="messageSource"
         class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename"
@@ -65,7 +54,6 @@
         class="org.springframework.web.servlet.view.tiles2.TilesViewResolver">
         <property name="viewClass"
             value="org.springframework.web.servlet.view.tiles2.TilesView" />
-<!--         <property name="order" value="1" />  -->
     </bean>
 
 </beans>

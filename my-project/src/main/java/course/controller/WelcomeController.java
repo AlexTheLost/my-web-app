@@ -15,8 +15,6 @@ public class WelcomeController {
         String userName = SecurityContextHolder.getContext().getAuthentication().getName();
         model.addAttribute("date", new java.util.Date());
         model.addAttribute("userName", userName);
-//        return "welcome";
-//        return "templates/base-template";
-        return "base-template";
+        return "welcome";
     }
 }
