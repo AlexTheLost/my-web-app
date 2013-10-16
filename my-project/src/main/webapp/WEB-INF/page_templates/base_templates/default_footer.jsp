@@ -3,7 +3,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
-    <div class="navbar-fixed-bottom row-fluid" style="margin: 30px;">
+    <div class="row-fluid" style="margin: 30px;">
       <div class="navbar-inner">
         <div class="container">
             <hr>

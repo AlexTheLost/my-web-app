@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
     <div class="container">
-    
+
       <div class="row pull"  style="width : 30%;">
-        <div class="col-md-12" style="margin: 20px 0px 20px;"></div>
+      
+        <div class="col-md-12" style="margin: 20px 0px 20px;">
+            <h2>For Avatar</h2> 
+            <img src="https://app.divshot.com/img/placeholder-100x100.gif">
+        </div>
+        
         <div class="col-md-12" style="margin: 20px 0px 20px;">
           <label class="form-label">New email:</label>
           <form class="form-inline" method="post">
@@ -45,7 +50,7 @@
         <div class="col-md-12">
           <form method="post">
             <h2>Short Decription:</h2>
-            <textarea style="margin: 0px 0px 20px; width: 714px; height: 189px;"></textarea>
+            <textarea style="margin: 10px 0px 20px; width: 714px; height: 189px;" maxlength="1000"></textarea>
             <input type="submit" value="submit" class="btn btn-primary btn-xs">
           </form>
         </div>
