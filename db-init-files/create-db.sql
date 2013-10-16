@@ -20,10 +20,9 @@ CREATE TABLE
 -- test data:
 
 -- -- into table users:
-INSERT INTO user (nick_name, login, password, email) VALUES('alex', 'alex', '1234', 'alex@mail.com');
-INSERT INTO user (nick_name, login, password, email) VALUES('pavel', 'pavel', 'pavel1999', 'pavel@mail.com');
-INSERT INTO user (nick_name, login, password, email) VALUES('oleg', 'oleg', '3242', 'ыв@mail.com');
-INSERT INTO user (nick_name, login, password, email) VALUES('дима', 'дима', '34', 'dima@mail.com');
+INSERT INTO users (name, email, password, role) VALUES('user', 'user@test.ru', 'user', '0');
+INSERT INTO users (name, email, password, role) VALUES('manager', 'manager@test.ru', 'manager', '1');
+INSERT INTO users (name, email, password, role) VALUES('admin', 'admin@test.ru', 'admin', '2');
 
 -- SELECT DATABASE mywebapp;
 SHOW TABLES;

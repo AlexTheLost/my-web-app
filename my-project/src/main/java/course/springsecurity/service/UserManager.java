@@ -2,9 +2,9 @@ package course.springsecurity.service;
 
 import java.util.HashMap;
 
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import org.springframework.security.core.userdetails.UserDetails;
 
 import course.model.dao.users.UserDao;
@@ -36,9 +36,13 @@ public class UserManager {
     public static class Test {
         public static void main(String[] args) {
             UserManager um = new UserManager();
-            UserDetails ud = um.getUser("mont");
+            UserDetails ud = um.getUser("Mont");
             System.out.println("SecureName: " + ud.getUsername());
             System.out.println("SecurePass: " + ud.getPassword());
+            for(GrantedAuthority ga : ud.getAuthorities()) {
+                System.out.println("SecureRole: " + ga.getAuthority());
+            }
+            
         }
     }
 }

@@ -63,5 +63,11 @@
         <put-attribute name="content"
             value="/WEB-INF/page_templates/contents/registration/registration_unsuccessful.jsp" />
     </definition>
-
+    
+    <!-- User account -->
+    <definition name="user_account" extends="base_template">
+        <put-attribute name="title" value="Sign in" />
+        <put-attribute name="content"
+            value="/WEB-INF/page_templates/contents/users/accounts/user_account_content.jsp" />
+    </definition>
 </tiles-definitions>
