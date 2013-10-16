@@ -11,19 +11,21 @@
 
     <context:component-scan base-package="course" />
 
-    <bean
+<!--     <bean
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">
-            <value>/WEB-INF/pages/</value>
+            <value>/WEB-INF/</value>
         </property>
         <property name="suffix">
             <value>.jsp</value>
         </property>
-    </bean>
+        <property name="order" value="2" />
+    </bean> -->
 
     <bean id="messageSource"
         class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basename" value="classpath:properties/localization/label" />
+        <property name="basename"
+            value="classpath:properties/localization/label" />
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
 
@@ -50,5 +52,20 @@
             <property name="paramName" value="lang" />
         </bean>
     </mvc:interceptors>
+
+    <!-- Apache Tiles -->
+    <bean id="tilesConfigurer"
+        class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+        <property name="definitions" value="/WEB-INF/config/tiles/tiles-templates.xml" />
+        <property name="preparerFactoryClass"
+            value="org.springframework.web.servlet.view.tiles2.SpringBeanPreparerFactory" />
+    </bean>
+
+    <bean id="viewResolver"
+        class="org.springframework.web.servlet.view.tiles2.TilesViewResolver">
+        <property name="viewClass"
+            value="org.springframework.web.servlet.view.tiles2.TilesView" />
+<!--         <property name="order" value="1" />  -->
+    </bean>
 
 </beans>
