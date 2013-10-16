@@ -6,7 +6,8 @@
 <tiles-definitions>
 
     <!-- Templates -->
-    <definition name="base_template" template="/WEB-INF/page_templates/base_templates/base_template.jsp">
+    <definition name="base_template"
+        template="/WEB-INF/page_templates/base_templates/base_template.jsp">
         <put-attribute name="title" value="Default title" />
         <put-attribute name="head"
             value="/WEB-INF/page_templates/base_templates/head_base.jsp" />
@@ -25,12 +26,42 @@
     </definition>
 
     <!-- SignIn Page -->
-    <definition name="signin" extends="base_template">
+    <definition name="sign_in" extends="base_template">
         <put-attribute name="title" value="Sign in" />
         <put-attribute name="head"
             value="/WEB-INF/page_templates/contents/login/default_login_head.jsp" />
         <put-attribute name="content"
             value="/WEB-INF/page_templates/contents/login/sign_in/sign_in_content.jsp" />
     </definition>
-    
+    <definition name="sign_in_fail" extends="base_template">
+        <put-attribute name="title" value="Sign in" />
+        <put-attribute name="head"
+            value="/WEB-INF/page_templates/contents/login/default_login_head.jsp" />
+        <put-attribute name="content"
+            value="/WEB-INF/page_templates/contents/login/sign_in_fail/sign_in_fail.jsp" />
+    </definition>
+
+    <!-- Registration -->
+    <definition name="registration" extends="base_template">
+        <put-attribute name="title" value="Sign in" />
+        <put-attribute name="head"
+            value="/WEB-INF/page_templates/contents/login/default_login_head.jsp" />
+        <put-attribute name="content"
+            value="/WEB-INF/page_templates/contents/registration/registration.jsp" />
+    </definition>
+    <definition name="registration_success" extends="base_template">
+        <put-attribute name="title" value="Sign in" />
+        <put-attribute name="head"
+            value="/WEB-INF/page_templates/contents/login/default_login_head.jsp" />
+        <put-attribute name="content"
+            value="/WEB-INF/page_templates/contents/registration/registration_success.jsp" />
+    </definition>
+    <definition name="registration_unsuccessful" extends="base_template">
+        <put-attribute name="title" value="Sign in" />
+        <put-attribute name="head"
+            value="/WEB-INF/page_templates/contents/login/default_login_head.jsp" />
+        <put-attribute name="content"
+            value="/WEB-INF/page_templates/contents/registration/registration_unsuccessful.jsp" />
+    </definition>
+
 </tiles-definitions>

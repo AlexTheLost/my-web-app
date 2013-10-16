@@ -39,7 +39,6 @@
       <p><b><i>name:&nbsp;${userName}&nbsp;<i class="icon-ok icon-large" style="color: #008000;"></i></i></b></p>
       <p><b><i>email:&nbsp;${email}&nbsp;<i class="icon-ok icon-large" style="color: #008000;"></i></i></b></p>
     </div>
-    <i>  </i>
   </body>
 </body>
 </html>

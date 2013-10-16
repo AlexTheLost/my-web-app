@@ -23,7 +23,7 @@ public class RegistrationController {
     public String registration(ModelMap model) {
         RegistrationForm regForm = new RegistrationForm();
         model.put("registrationForm", regForm);
-        return "registration/registration";
+        return "registration";
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -31,7 +31,7 @@ public class RegistrationController {
             BindingResult result) {
         registrationValidator.validate(regForm, result);
         if (result.hasErrors()) {
-            return "registration/registration";
+            return "registration";
         }
         String userName = regForm.getUserName();
         String email = regForm.getEmail();
@@ -41,7 +41,7 @@ public class RegistrationController {
         } catch (Exception ex) {
             // TODO add to log sistem
             ex.printStackTrace();
-            return "registration/registration-unsuccessful";
+            return "registration_unsuccessful";
         }
         try {
             notificationByEmail(userName, email);
@@ -51,7 +51,7 @@ public class RegistrationController {
         }
         model.addAttribute("userName", userName);
         model.addAttribute("email", email);
-        return "registration/registration-success";
+        return "registration_success";
     }
 
     private void createUser(String name, String email, String password) {
