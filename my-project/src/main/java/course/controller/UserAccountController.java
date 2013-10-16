@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("user_account")
+@RequestMapping("/user/user_account")
 public class UserAccountController {
 
     @RequestMapping(method = RequestMethod.GET)

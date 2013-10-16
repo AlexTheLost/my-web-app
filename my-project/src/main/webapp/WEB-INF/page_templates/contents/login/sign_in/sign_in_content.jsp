@@ -3,6 +3,7 @@
 %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
+
 <div class="container">
     <form class="form-signin" action="j_spring_security_check"
         method="post"
