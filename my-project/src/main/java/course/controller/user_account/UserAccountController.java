@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +13,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import course.controller.user_account.email.EmailEditingForm;
 import course.controller.user_account.email.UserEmailEditingValidator;
+import course.controller.user_account.password.PasswordEditingForm;
+import course.controller.user_account.password.UserPasswordEditingValidator;
 import course.model.dao.users.UserDaoImpl;
 import course.model.dao.users.UserDao;
 import course.model.domain.users.User;
@@ -35,8 +36,10 @@ public class UserAccountController {
 
     @RequestMapping(value = "/user/user_account_setting", method = RequestMethod.GET)
     public String printUserAccountSettion(ModelMap model) {
-        if(!model.containsAttribute("emailForm"))
+        if (!model.containsAttribute("emailForm"))
             model.addAttribute("emailForm", new EmailEditingForm());
+        if (!model.containsAttribute("passwordForm"))
+            model.addAttribute("passwordForm", new PasswordEditingForm());
         return "user_account_setting";
     }
 
@@ -49,13 +52,36 @@ public class UserAccountController {
             final RedirectAttributes redirectAttributes) {
         emailValidator.validate(emailForm, result);
         if (result.hasErrors()) {
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.emailForm", result);
-             redirectAttributes.addFlashAttribute("emailForm", emailForm);
-            System.out.println(emailForm.getNewEmail());
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.emailForm",
+                    result);
+            redirectAttributes.addFlashAttribute("emailForm", emailForm);
             return "redirect:user_account_setting";
         }
         User user = getCurrentUser();
         user.setEmail(newEmail);
+        userDao.update(user);
+        return "redirect:user_account";
+    }
+
+    @Autowired
+    private UserPasswordEditingValidator passwordValidator;
+
+    @RequestMapping(value = "/user/new_password", method = RequestMethod.POST)
+    public String addNewPassword(
+            @RequestParam("newPassword") String newPassword,
+            PasswordEditingForm passwordForm, ModelMap model,
+            BindingResult result, final RedirectAttributes redirectAttributes) {
+        passwordValidator.validate(passwordForm, result);
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute(
+                    "org.springframework.validation.BindingResult.passwordForm",
+                    result);
+            redirectAttributes.addFlashAttribute("passwordForm", passwordForm);
+            return "redirect:user_account_setting";
+        }
+        User user = getCurrentUser();
+        user.setPassword(newPassword);
         userDao.update(user);
         return "redirect:user_account";
     }

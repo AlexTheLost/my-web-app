@@ -7,35 +7,56 @@
 
     <div class="row pull" style="width: 30%;">
         <a href="user_account">User data</a>
-
+        <hr>
         <div class="col-md-12" style="margin: 20px 0px 20px;">
             <h2>For Avatar</h2>
             <img src="https://app.divshot.com/img/placeholder-100x100.gif">
         </div>
 
+        <hr>
+
         <div class="col-md-12" style="margin: 20px 0px 20px;">
             <form:form action="${pageContext.request.contextPath}/user/new_email" method="post" commandName="emailForm"
-                class="orm-inline">
+                class="form-inline">
                 <label class="form-label"><spring:message code="label.new_user_email" />:</label>
                 <c:set var="user_email">
                     <spring:message code="label.user_email" />
                 </c:set>
                 <form:input path="newEmail" type="text" class="form-control" placeholder="${user_email}" />
-                <span class="error">
-                    <form:errors path="newEmail" />
+                <button class="btn btn-primary btn-xs" type="submit">
+                    <spring:message code="label.submit" />
+                </button>
+                <span class="error"> <form:errors path="newEmail" />
                 </span>
-                <button class="btn btn-primary btn-xs" type="submit"><spring:message code="label.submit"/></button>
             </form:form>
         </div>
 
+        <hr>
+
         <div class="col-md-12" style="margin: 20px 0px 20px;">
-            <label class="form-label">New password:</label>
-            <form class="form-inline" method="post">
-                <input type="text" class="form-control" placeholder="New password"> <input type="text"
-                    class="form-control" placeholder="Confirm new password"> <input type="submit" value="submit"
-                    class="btn btn-primary btn-xs">
-            </form>
+            <form:form action="${pageContext.request.contextPath}/user/new_password" method="post"
+                commandName="passwordForm" class="form-inline">
+                <label class="form-label"><spring:message code="label.new_user_password" />:</label>
+                <c:set var="new_user_password">
+                    <spring:message code="label.registration_password" />
+                </c:set>
+                <c:set var="new_user_password_confirm">
+                    <spring:message code="label.registration_confirm_password" />
+                </c:set>
+                <form:input path="newPassword" type="password" class="form-control" placeholder="${new_user_password}" />
+                <form:input path="newPasswordConfirm" type="password" class="form-control"
+                    placeholder="${new_user_password_confirm}" />
+                <button class="btn btn-primary btn-xs" type="submit">
+                    <spring:message code="label.submit" />
+                </button>
+                <span class="error"> <form:errors path="newPassword" />
+                </span>
+                <span class="error"> <form:errors path="newPasswordConfirm" />
+                </span>
+            </form:form>
         </div>
+
+        <hr>
 
         <div class="col-md-12" style="margin: 20px 0px 20px;">
             <form class="form-horizontal" method="post">
@@ -46,6 +67,8 @@
             </form>
         </div>
 
+        <hr>
+
         <div class="col-md-12">
             <form class="form-horizontal" method="post">
                 <label class="control-label">Select style:</label> <label class="radio inline"> <input
@@ -54,6 +77,9 @@
                 </label> <input type="submit" value="submit" class="btn btn-primary btn-xs">
             </form>
         </div>
+
+        <hr>
+
         <div class="col-md-12">
             <form method="post">
                 <h2>Short Decription:</h2>
@@ -61,5 +87,8 @@
                 <input type="submit" value="submit" class="btn btn-primary btn-xs">
             </form>
         </div>
+
+        <hr>
+
     </div>
 </div>
