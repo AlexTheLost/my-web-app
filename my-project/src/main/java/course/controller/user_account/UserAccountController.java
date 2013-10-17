@@ -18,6 +18,7 @@ import course.controller.user_account.password.UserPasswordEditingValidator;
 import course.model.dao.users.UserDaoImpl;
 import course.model.dao.users.UserDao;
 import course.model.domain.users.User;
+import course.model.domain.users.fields.Language;
 
 @Controller
 public class UserAccountController {
@@ -86,6 +87,22 @@ public class UserAccountController {
         return "redirect:user_account";
     }
 
+    @RequestMapping(value = "/user/new_language", method = RequestMethod.POST)
+    public String addNewLanguage(@RequestParam("language") String language) {
+        Language lang;
+        if (language.equals("en")) {
+            lang = Language.ENGLISH;
+        } else if (language.equals("ru")) {
+            lang = Language.RUSSIAN;
+        } else {
+            return "redirect:user_account";
+        }
+        User user = getCurrentUser();
+        user.setLanguage(lang);
+        userDao.update(user);
+        return "redirect:user_account";
+    }
+    
     private User getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();

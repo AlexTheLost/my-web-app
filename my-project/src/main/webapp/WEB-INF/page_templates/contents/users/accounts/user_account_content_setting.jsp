@@ -59,22 +59,15 @@
         <hr>
 
         <div class="col-md-12" style="margin: 20px 0px 20px;">
-            <form class="form-horizontal" method="post">
-                <label class="control-label">Select languages:</label> <label class="radio inline"> <input
-                    name="language" type="radio" value="ru" checked="true">Rusian
-                </label> <label class="radio inline"> <input name="language" type="radio" value="en">English
-                </label> <input type="submit" value="submit" class="btn btn-primary btn-xs">
-            </form>
-        </div>
-
-        <hr>
-
-        <div class="col-md-12">
-            <form class="form-horizontal" method="post">
-                <label class="control-label">Select style:</label> <label class="radio inline"> <input
-                    name="style" type="radio" value="dark" checked="true">Dark
-                </label> <label class="radio inline"> <input name="style" type="radio" value="light">Light
-                </label> <input type="submit" value="submit" class="btn btn-primary btn-xs">
+            <form  action="${pageContext.request.contextPath}/user/new_language" method="post" class="form-horizontal">
+                <label class="control-label"><spring:message code="label.new_user_language" />:</label> 
+                <label class="radio inline">
+                    <input name="language" type="radio" value="ru" checked="true" ><spring:message code="label.russian_language" />
+                </label>
+                <label class="radio inline">
+                    <input name="language" type="radio" value="en"><spring:message code="label.english_language" />
+                </label>
+                <input type="submit" value="<spring:message code="label.english_language" />" class="btn btn-primary btn-xs">
             </form>
         </div>
 

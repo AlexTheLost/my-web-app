@@ -34,7 +34,7 @@
             value="/WEB-INF/page_templates/contents/login/sign_in/sign_in_content.jsp" />
     </definition>
     <definition name="sign_in_fail" extends="base_template">
-        <put-attribute name="title" value="Sign in" />
+        <put-attribute name="title" value="Sign in fail" />
         <put-attribute name="head"
             value="/WEB-INF/page_templates/contents/login/default_login_head.jsp" />
         <put-attribute name="content"
@@ -43,21 +43,21 @@
 
     <!-- Registration -->
     <definition name="registration" extends="base_template">
-        <put-attribute name="title" value="Sign in" />
+        <put-attribute name="title" value="Registration" />
         <put-attribute name="head"
             value="/WEB-INF/page_templates/contents/login/default_login_head.jsp" />
         <put-attribute name="content"
             value="/WEB-INF/page_templates/contents/registration/registration.jsp" />
     </definition>
     <definition name="registration_success" extends="base_template">
-        <put-attribute name="title" value="Sign in" />
+        <put-attribute name="title" value="Registration success" />
         <put-attribute name="head"
             value="/WEB-INF/page_templates/contents/login/default_login_head.jsp" />
         <put-attribute name="content"
             value="/WEB-INF/page_templates/contents/registration/registration_success.jsp" />
     </definition>
     <definition name="registration_unsuccessful" extends="base_template">
-        <put-attribute name="title" value="Sign in" />
+        <put-attribute name="title" value="Registration unsuccessful" />
         <put-attribute name="head"
             value="/WEB-INF/page_templates/contents/login/default_login_head.jsp" />
         <put-attribute name="content"
@@ -66,14 +66,14 @@
     
     <!-- User account -->
     <definition name="user_account" extends="base_template">
-        <put-attribute name="title" value="Sign in" />
+        <put-attribute name="title" value="User account" />
         <put-attribute name="head"
             value="/WEB-INF/page_templates/contents/users/accounts/default_head_user_account.jsp" />
         <put-attribute name="content"
             value="/WEB-INF/page_templates/contents/users/accounts/user_account_content.jsp" />
     </definition>
         <definition name="user_account_setting" extends="base_template">
-        <put-attribute name="title" value="Sign in" />
+        <put-attribute name="title" value="User account setting" />
         <put-attribute name="head"
             value="/WEB-INF/page_templates/contents/users/accounts/default_head_user_account.jsp" />
         <put-attribute name="content"
