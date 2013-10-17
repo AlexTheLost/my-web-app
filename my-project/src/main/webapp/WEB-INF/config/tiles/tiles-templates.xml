@@ -80,4 +80,10 @@
             value="/WEB-INF/page_templates/contents/users/accounts/user_account_content_setting.jsp" />
     </definition>
     
+    <!-- Events -->
+    <definition name="event_create" extends="base_template">
+        <put-attribute name="title" value="User account" />
+        <put-attribute name="content"
+            value="/WEB-INF/page_templates/contents/events/create/event_create_content.jsp" />
+    </definition>
 </tiles-definitions>

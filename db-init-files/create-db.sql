@@ -24,6 +24,14 @@ INSERT INTO users (name, email, password, role) VALUES('user', 'user@test.ru', '
 INSERT INTO users (name, email, password, role) VALUES('manager', 'manager@test.ru', 'manager', '1');
 INSERT INTO users (name, email, password, role) VALUES('admin', 'admin@test.ru', 'admin', '2');
 
+-- -- into table categories:
+INSERT INTO categories (name) VALUES('work');
+INSERT INTO categories (name) VALUES('sport');
+INSERT INTO categories (name) VALUES('art');
+INSERT INTO categories (name) VALUES('fun');
+INSERT INTO categories (name) VALUES('book');
+INSERT INTO categories (name) VALUES('meeting');
+
 -- SELECT DATABASE mywebapp;
 SHOW TABLES;
 DESCRIBE user;

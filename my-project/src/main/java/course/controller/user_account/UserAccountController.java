@@ -1,10 +1,5 @@
 package course.controller.user_account;
 
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
-
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -132,7 +127,6 @@ public class UserAccountController {
                     shortDescriptionForm);
             return "redirect:user_account_setting";
         }
-        System.out.println(shortDescription);
         User user = getCurrentUser();
         user.setShortDescription(shortDescription);
         userDao.update(user);
