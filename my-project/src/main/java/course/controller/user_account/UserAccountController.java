@@ -1,5 +1,10 @@
 package course.controller.user_account;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,6 +20,8 @@ import course.controller.user_account.email.EmailEditingForm;
 import course.controller.user_account.email.UserEmailEditingValidator;
 import course.controller.user_account.password.PasswordEditingForm;
 import course.controller.user_account.password.UserPasswordEditingValidator;
+import course.controller.user_account.short_description.ShortDescriptionEditingForm;
+import course.controller.user_account.short_description.ShortDescriptionEditingValidator;
 import course.model.dao.users.UserDaoImpl;
 import course.model.dao.users.UserDao;
 import course.model.domain.users.User;
@@ -41,6 +48,9 @@ public class UserAccountController {
             model.addAttribute("emailForm", new EmailEditingForm());
         if (!model.containsAttribute("passwordForm"))
             model.addAttribute("passwordForm", new PasswordEditingForm());
+        if (!model.containsAttribute("shortDescriptionForm"))
+            model.addAttribute("shortDescriptionForm",
+                    new ShortDescriptionEditingForm());
         return "user_account_setting";
     }
 
@@ -75,9 +85,10 @@ public class UserAccountController {
             BindingResult result, final RedirectAttributes redirectAttributes) {
         passwordValidator.validate(passwordForm, result);
         if (result.hasErrors()) {
-            redirectAttributes.addFlashAttribute(
-                    "org.springframework.validation.BindingResult.passwordForm",
-                    result);
+            redirectAttributes
+                    .addFlashAttribute(
+                            "org.springframework.validation.BindingResult.passwordForm",
+                            result);
             redirectAttributes.addFlashAttribute("passwordForm", passwordForm);
             return "redirect:user_account_setting";
         }
@@ -102,7 +113,32 @@ public class UserAccountController {
         userDao.update(user);
         return "redirect:user_account";
     }
-    
+
+    @Autowired
+    private ShortDescriptionEditingValidator shortDescriptionValidator;
+
+    @RequestMapping(value = "/user/new_short_description", method = RequestMethod.POST)
+    public String addNewShortDescription(
+            @RequestParam("shortDescription") String shortDescription,
+            ShortDescriptionEditingForm shortDescriptionForm,
+            BindingResult result, final RedirectAttributes redirectAttributes) {
+        shortDescriptionValidator.validate(shortDescriptionForm, result);
+        if (result.hasErrors()) {
+            redirectAttributes
+                    .addFlashAttribute(
+                            "org.springframework.validation.BindingResult.shortDescriptionForm",
+                            result);
+            redirectAttributes.addFlashAttribute("shortDescriptionForm",
+                    shortDescriptionForm);
+            return "redirect:user_account_setting";
+        }
+        System.out.println(shortDescription);
+        User user = getCurrentUser();
+        user.setShortDescription(shortDescription);
+        userDao.update(user);
+        return "redirect:user_account";
+    }
+
     private User getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();

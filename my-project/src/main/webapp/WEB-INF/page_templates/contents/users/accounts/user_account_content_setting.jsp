@@ -59,26 +59,30 @@
         <hr>
 
         <div class="col-md-12" style="margin: 20px 0px 20px;">
-            <form  action="${pageContext.request.contextPath}/user/new_language" method="post" class="form-horizontal">
-                <label class="control-label"><spring:message code="label.new_user_language" />:</label> 
-                <label class="radio inline">
-                    <input name="language" type="radio" value="ru" checked="true" ><spring:message code="label.russian_language" />
-                </label>
-                <label class="radio inline">
-                    <input name="language" type="radio" value="en"><spring:message code="label.english_language" />
-                </label>
-                <input type="submit" value="<spring:message code="label.english_language" />" class="btn btn-primary btn-xs">
+            <form action="${pageContext.request.contextPath}/user/new_language" method="post" class="form-horizontal">
+                <label class="control-label"><spring:message code="label.new_user_language" />:</label> <label
+                    class="radio inline"> <input name="language" type="radio" value="ru" checked="true">
+                <spring:message code="label.russian_language" />
+                </label> <label class="radio inline"> <input name="language" type="radio" value="en">
+                <spring:message code="label.english_language" />
+                </label> <input type="submit" value="<spring:message code="label.submit" />"
+                    class="btn btn-primary btn-xs">
             </form>
         </div>
 
         <hr>
 
-        <div class="col-md-12">
-            <form method="post">
-                <h2>Short Decription:</h2>
-                <textarea style="margin: 10px 0px 20px; width: 714px; height: 189px;" maxlength="1000"></textarea>
-                <input type="submit" value="submit" class="btn btn-primary btn-xs">
-            </form>
+        <div class="col-md-12" style="margin: 20px 0px 20px;">
+            <form:form action="${pageContext.request.contextPath}/user/new_short_description" method="post"
+                commandName="shortDescriptionForm" class="form-inline">
+                <label class="form-label"><spring:message code="label.new_user_short_description" />:</label>
+                <form:textarea path="shortDescription" style="margin: 10px 0px 20px; width: 714px; height: 189px;" maxlength="1000"/>
+                <button class="btn btn-primary btn-xs" type="submit">
+                    <spring:message code="label.submit" />
+                </button>
+                <span class="error"> <form:errors path="shortDescription" />
+                </span>
+            </form:form>
         </div>
 
         <hr>

@@ -10,13 +10,13 @@ public class TestUserDaoImpl {
 
         UserDao userDao = new UserDaoImpl();
 
-        // User user1 = new User("mont", "mont@mail.ru", "567567534");
-        // userDao.save(user1);
-
-        User user = userDao.findByName("mont");
-        user.setName("Mont");
-        user.setEmail("mont@mail.com");
-        userDao.update(user);
+         User user1 = new User("выва", "фыывв@mail.ru", "фыв");
+         userDao.save(user1);
+//
+//        User user = userDao.findByName("mont");
+//        user.setName("Mont");
+//        user.setEmail("mont@mail.com");
+//        userDao.update(user);
 
         // List<User> users = userDao.getAll();
         //
