@@ -24,7 +24,7 @@ public class User implements Serializable {
     private String            password;
     private Role              role             = Role.ROLE_USER;
     private Language          language         = Language.RUSSIAN;
-    private Stile             stile            = Stile.LIGTH;
+    private Stile             stile            = Stile.DARCK;
     private int               idAvatar         = 0;
     private String            shortDescription;
     private Set<Event>        events           = new HashSet<Event>();
