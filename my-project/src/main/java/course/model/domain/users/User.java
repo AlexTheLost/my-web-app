@@ -119,6 +119,10 @@ public class User implements Serializable {
     public void setEvents(Set<Event> userEvents) {
         this.events = userEvents;
     }
+    
+    public void setEvent(Event userEvent) {
+        this.events.add(userEvent);
+    }
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;

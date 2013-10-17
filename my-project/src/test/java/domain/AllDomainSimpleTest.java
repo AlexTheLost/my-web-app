@@ -37,7 +37,7 @@ public class AllDomainSimpleTest {
         session.save(manager);
 
         Event brithday = new Event();
-        brithday.setName("Alex brithday!");
+        brithday.setTitle("Alex brithday!");
         try {
             SimpleDateFormat textDateBrithday = new SimpleDateFormat(
                     "yyyy-MM-dd");
@@ -59,7 +59,7 @@ public class AllDomainSimpleTest {
         session.save(user);
         
         Event brithday2 = new Event();
-        brithday2.setName("Alex brithday2!");
+        brithday2.setTitle("Alex brithday2!");
         try {
             SimpleDateFormat textDateBrithday = new SimpleDateFormat(
                     "yyyy-MM-dd");

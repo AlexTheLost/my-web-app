@@ -63,7 +63,7 @@
         <put-attribute name="content"
             value="/WEB-INF/page_templates/contents/registration/registration_unsuccessful.jsp" />
     </definition>
-    
+
     <!-- User account -->
     <definition name="user_account" extends="base_template">
         <put-attribute name="title" value="User account" />
@@ -72,17 +72,19 @@
         <put-attribute name="content"
             value="/WEB-INF/page_templates/contents/users/accounts/user_account_content.jsp" />
     </definition>
-        <definition name="user_account_setting" extends="base_template">
+    <definition name="user_account_setting" extends="base_template">
         <put-attribute name="title" value="User account setting" />
         <put-attribute name="head"
             value="/WEB-INF/page_templates/contents/users/accounts/default_head_user_account.jsp" />
         <put-attribute name="content"
             value="/WEB-INF/page_templates/contents/users/accounts/user_account_content_setting.jsp" />
     </definition>
-    
+
     <!-- Events -->
     <definition name="event_create" extends="base_template">
         <put-attribute name="title" value="User account" />
+        <put-attribute name="head"
+            value="/WEB-INF/page_templates/contents/events/create/event_create_head.jsp" />
         <put-attribute name="content"
             value="/WEB-INF/page_templates/contents/events/create/event_create_content.jsp" />
     </definition>

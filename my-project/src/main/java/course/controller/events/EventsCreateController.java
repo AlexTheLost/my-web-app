@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class EventsCreateController {
 
-    @RequestMapping(value = "/event_create", method = RequestMethod.GET)
+    @RequestMapping(value = "user/event_create", method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
         return "event_create";
     }

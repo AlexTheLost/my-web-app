@@ -1,12 +1,18 @@
 package course.model.dao.users;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Transaction;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import org.hibernate.Query;
 
+import course.model.dao.events.EventDao;
+import course.model.dao.events.EventDaoImpl;
+import course.model.domain.events.Event;
 import course.model.domain.users.User;
 import course.model.persistence.HibernateUtil;
 
@@ -66,7 +72,30 @@ public  class UserDaoImpl implements UserDao {
             session.close();
         }
     }
-
+    
+    // TODO rewrite to get userEvents and e.t.c. SET's
+    public User findByNameNoLazily(String name) {
+        User user = null;
+        Session session = sessionFactory.openSession();
+        String query = "from User where name = :name";
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Query _query = session.createQuery(query);
+            _query.setParameter("name", name);
+            user = (User) _query.uniqueResult();
+            Hibernate.initialize(user.getEvents());
+            transaction.commit();
+        } catch (RuntimeException ex) {
+            if (transaction != null)
+                transaction.rollback();
+            throw ex;
+        } finally {
+            session.close();
+        }
+        return user;
+    }
+    
     public User findByName(String name) {
         User user = null;
         Session session = sessionFactory.openSession();
@@ -178,6 +207,40 @@ public  class UserDaoImpl implements UserDao {
             return true;
         } else {
             return false;
+        }
+    }
+    
+    public static class Test {
+        public static void main(String[] args) {
+            UserDao userDao = new UserDaoImpl();
+            EventDao eventDao = new EventDaoImpl();
+            Event firstEvent = eventDao.findByTitle("FirstEvent");
+            
+//            User user = new User("Alex", "email", "pass");
+//            user.setEvent(event);
+//            userDao.save(user);
+            
+//            User user = userDao.findByName("Alex");
+//            Set<Event> events = null;
+//            user.setEvents(events);
+//            userDao.update(user);
+//            userDao.delete(user);
+            
+            User user = userDao.findByNameNoLazily("Alex");
+            Set<Event> events = user.getEvents();
+            for(Event ev : events) {
+                System.out.println(ev);
+            }
+            
+//          Event secondEvent = eventDao.findByTitle("SecondEvent");
+//            System.out.println(secondEvent);
+//            User user = userDao.findByName("Alex");
+//            System.out.println(user);
+//            Set<Event> events = new HashSet<Event>();
+//            events.add(secondEvent);
+//            user.setEvents(events);
+//            userDao.update(user);
+            
         }
     }
 }

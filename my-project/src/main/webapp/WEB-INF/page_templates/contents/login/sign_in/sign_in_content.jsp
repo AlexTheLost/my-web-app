@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"
 %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-
+<%@ page session="false"%>
 
 <div class="container">
     <form class="form-signin" action="j_spring_security_check"

@@ -8,8 +8,8 @@
             <column name="id_event" />
             <generator class="native" />
         </id>
-        <property name="name" type="string">
-            <column name="name" length="30" not-null="true"
+        <property name="title" type="string">
+            <column name="title" length="30" not-null="true"
                 unique="true" />
         </property>
         <property name="date" type="java.sql.Date">
@@ -24,6 +24,11 @@
         <property name="location" type="string">
             <column name="location" length="100" />
         </property>
+        <set name="users"
+            table="user_events" cascade="all">
+            <key column="id_event" />
+            <many-to-many column="id_user" class="course.model.domain.users.User"/>
+        </set>
         <set name="categories"
             table="event_categories" cascade="all">
             <key column="id_event" />

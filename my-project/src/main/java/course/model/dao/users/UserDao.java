@@ -12,6 +12,8 @@ public interface UserDao {
 
     public void delete(User user);
 
+    public User findByNameNoLazily(String name);
+    
     public User findByName(String name);
     
     public User findByEmail(String email);
