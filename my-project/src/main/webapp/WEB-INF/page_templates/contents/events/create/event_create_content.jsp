@@ -49,15 +49,16 @@
             <div class="col-md-12" style="margin: 20px 0px 20px;">
                 <label class="form-label"><spring:message code="label.event.categories" />:</label>
                 <div class="col-md-12" style="margin: 20px 0px 20px;">
-
-                    <c:forEach items="${categories}" var="category">
+                    <span class="error"> 
+                        <form:errors path="categories" />
+                    </span>
+                    <c:forEach items="${allCategories}" var="category">
                         <div class="checkbox">
-                            <label> <input type="checkbox" value="true"> <spring:message
+                            <label> <form:checkbox path="categories" value="${category.name}" /> <spring:message
                                     code="label.category.${category.name}" />
                             </label>
                         </div>
                     </c:forEach>
-
                 </div>
             </div>
 

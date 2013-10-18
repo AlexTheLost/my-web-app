@@ -1,10 +1,13 @@
-package course.controller.events;
+package course.controller.events.create;
+
+import java.util.List;
 
 public class EventForm {
 
     private String title;
     private String   date;
     private String description;
+    private List<String> categories;
 
     public void setTitle(String title) {
         this.title = title;
@@ -28,5 +31,13 @@ public class EventForm {
 
     public String getDescription() {
         return this.description;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
+    }
+
+    public List<String> getCategories() {
+        return this.categories;
     }
 }

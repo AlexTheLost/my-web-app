@@ -1,4 +1,4 @@
-package course.controller.events;
+package course.controller.events.create;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -47,6 +47,10 @@ public class EventValidator implements Validator {
             errors.rejectValue("description", "description.tooLong",
                     "description must not more than " + maxDescrLen
                             + " characters.");
+        }
+        
+        if (eventForm.getCategories() == null) {
+            errors.rejectValue("categories", "label.error.event.check_the_category");
         }
     }
 
