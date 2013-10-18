@@ -4,9 +4,9 @@ import java.util.List;
 
 public class EventForm {
 
-    private String title;
-    private String   date;
-    private String description;
+    private String       title;
+    private String       date;
+    private String       description;
     private List<String> categories;
 
     public void setTitle(String title) {

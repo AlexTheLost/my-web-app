@@ -63,7 +63,6 @@ public class EventDaoImpl implements EventDao {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.beginTransaction();
             session.delete(event);
             transaction.commit();
         } catch (RuntimeException ex) {
@@ -107,6 +106,28 @@ public class EventDaoImpl implements EventDao {
             _query.setParameter("title", title);
             event = (Event) _query.uniqueResult();
             Hibernate.initialize(event.getUsers());
+            transaction.commit();
+        } catch (RuntimeException ex) {
+            if (transaction != null)
+                transaction.rollback();
+            throw ex;
+        } finally {
+            session.close();
+        }
+        return event;
+    }
+
+    public Event findByTitleDepCategories(String title) {
+        Event event = null;
+        Session session = sessionFactory.openSession();
+        String query = "from Event where title = :title";
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Query _query = session.createQuery(query);
+            _query.setParameter("title", title);
+            event = (Event) _query.uniqueResult();
+            Hibernate.initialize(event.getCategories());
             transaction.commit();
         } catch (RuntimeException ex) {
             if (transaction != null)
@@ -164,6 +185,26 @@ public class EventDaoImpl implements EventDao {
         return events;
     }
 
+    @SuppressWarnings("unchecked")
+    public List<Event> getAllOrderByDate() {
+        List<Event> events = null;
+        Session session = sessionFactory.openSession();
+        String query = "from Event order by date";
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            events = session.createQuery(query).list();
+            transaction.commit();
+        } catch (RuntimeException ex) {
+            if (transaction != null)
+                transaction.rollback();
+            throw ex;
+        } finally {
+            session.close();
+        }
+        return events;
+    }
+
     public static class Test {
         public static void main(String[] args) throws ParseException {
             EventDao eventDao = new EventDaoImpl();
@@ -178,17 +219,18 @@ public class EventDaoImpl implements EventDao {
                 ex.printStackTrace();
                 throw ex;
             }
-            Event event = eventDao.findByTitle("SecondEvent");
+//            Event event = eventDao.findByTitle("SecondEvent");
             // User user = userDao.findByName("Alex");
             // Set<User> users = new HashSet<User>();
             // users.add(user);
             // event.setUsers(users);
             // eventDao.update(event);
-            Hibernate.initialize(event.getUsers());
-            Set<User> users = event.getUsers();
-            for (User _user : users) {
-                System.out.println(_user);
-            }
+
+            // Hibernate.initialize(event.getUsers());
+            // Set<User> users = event.getUsers();
+            // for (User _user : users) {
+            // System.out.println(_user);
+            // }
 
             // Event event = new Event("SecondEvent", dateBrithday,
             // "Something to do second!");
@@ -204,6 +246,25 @@ public class EventDaoImpl implements EventDao {
             // eventDao.delete(event);
 
             // System.out.println(event);
+            
+            Event event = eventDao.findByTitleDepCategories("OOO");
+            event.getCategories().clear();
+            eventDao.update(event);
+            eventDao.delete(event);
+//            event.getUsers().clear();
+//            eventDao.save(event);
+            
+//
+//            List<Event> events = eventDao.getAll();
+//            for (Event ev : events) {
+//                System.out.println(ev);
+//            }
+//
+//            events = eventDao.getAllOrderByDate();
+//            for (Event ev : events) {
+//                System.out.println(ev);
+//            }
         }
     }
+
 }
