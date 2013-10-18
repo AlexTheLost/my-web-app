@@ -1,11 +1,9 @@
 package course.controller.events;
 
-import java.util.Date;
-
 public class EventForm {
 
     private String title;
-    private Date   date;
+    private String   date;
     private String description;
 
     public void setTitle(String title) {
@@ -16,11 +14,11 @@ public class EventForm {
         return this.title;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return this.date;
     }
 

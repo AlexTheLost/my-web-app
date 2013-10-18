@@ -13,6 +13,8 @@ public interface EventDao {
     public void delete(Event event);
 
     public Event findByTitle(String title);
+    
+    public Event findByTitleDepUsers(String title);
 
     public boolean titleIsOccupied(String title);
 

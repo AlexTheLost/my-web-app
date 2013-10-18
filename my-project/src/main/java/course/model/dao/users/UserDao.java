@@ -12,7 +12,7 @@ public interface UserDao {
 
     public void delete(User user);
 
-    public User findByNameNoLazily(String name);
+    public User findUserByNameDepEvents(String name);
     
     public User findByName(String name);
     

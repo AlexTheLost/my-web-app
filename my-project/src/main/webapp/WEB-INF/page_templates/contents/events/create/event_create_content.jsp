@@ -7,34 +7,31 @@
 
     <div class="row">
 
-        <form:form method="post" commandName="registrationForm" class="form-signin">
+        <form:form action="${pageContext.request.contextPath}/user/event_create" method="post" commandName="eventForm"
+            class="form-signin">
 
             <div class="col-md-12" style="margin: 20px 0px 20px;">
-                <label class="form-label">Create Event:</label>
+                <label class="form-label"><spring:message code="label.event.create" />:</label>
             </div>
 
             <hr>
 
             <div class="col-md-12" style="margin: 20px 0px 20px;">
-                <label class="form-label">Title:</label>
-                
-                <form:input path="" type="text" class="form-control" style="width: 300px;" />
-                <span class="error"> 
-                    <form:errors path="userName" />
+                <label class="form-label"><spring:message code="label.event.title" />:</label>
+
+                <form:input path="title" type="text" class="form-control" style="width: 300px;" />
+                <span class="error"> <form:errors path="title" />
                 </span>
             </div>
 
             <hr>
 
             <div class="col-md-12" style="margin: 20px 0px 20px;">
-                <label class="form-label">Date:</label>
+                <label class="form-label"><spring:message code="label.event.date" />:</label>
                 <div id="datetimepicker" class="input-append date">
-                    <form:input path=""  data-format="yyyy-MM-dd" type="text" readonly />
-                    <span class="add-on"> <i
-                        data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-                    </span>
-                    <span class="error"> 
-                        <form:errors path="userName" />
+                    <form:input path="date" data-format="yyyy-MM-dd" type="text" readonly="true" />
+                    <span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                    </span> <span class="error"> <form:errors path="date" />
                     </span>
                 </div>
             </div>
@@ -42,12 +39,32 @@
             <hr>
 
             <div class="col-md-12" style="margin: 20px 0px 20px;">
-                <label class="form-label">Description:</label>
-                <form:textarea path="" class="form-control clearfix" style="margin-top: 0px; margin-bottom: 0px; height: 260px;"
-                    maxlength="2000" />
-                <span class="error"> 
-                    <form:errors path="userName" />
+                <label class="form-label"><spring:message code="label.event.description" />:</label>
+                <form:textarea path="description" class="form-control clearfix"
+                    style="margin-top: 0px; margin-bottom: 0px; height: 260px;" maxlength="2000" />
+                <span class="error"> <form:errors path="description" />
                 </span>
+            </div>
+
+            <div class="col-md-12" style="margin: 20px 0px 20px;">
+                <label class="form-label"><spring:message code="label.event.categories" />:</label>
+                <div class="col-md-12" style="margin: 20px 0px 20px;">
+
+                    <c:forEach items="${categories}" var="category">
+                        <div class="checkbox">
+                            <label> <input type="checkbox" value="true"> <spring:message
+                                    code="label.category.${category.name}" />
+                            </label>
+                        </div>
+                    </c:forEach>
+
+                </div>
+            </div>
+
+            <div class="col-md-12" style="margin: 20px 0px 20px;">
+                <button class="btn btn-primary btn-xs" type="submit">
+                    <spring:message code="label.submit" />
+                </button>
             </div>
 
         </form:form>

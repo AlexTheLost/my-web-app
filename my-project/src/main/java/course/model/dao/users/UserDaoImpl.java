@@ -73,8 +73,29 @@ public  class UserDaoImpl implements UserDao {
         }
     }
     
+    public User findByName(String name) {
+        User user = null;
+        Session session = sessionFactory.openSession();
+        String query = "from User where name = :name";
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Query _query = session.createQuery(query);
+            _query.setParameter("name", name);
+            user = (User) _query.uniqueResult();
+            transaction.commit();
+        } catch (RuntimeException ex) {
+            if (transaction != null)
+                transaction.rollback();
+            throw ex;
+        } finally {
+            session.close();
+        }
+        return user;
+    }
+    
     // TODO rewrite to get userEvents and e.t.c. SET's
-    public User findByNameNoLazily(String name) {
+    public User findUserByNameDepEvents(String name) {
         User user = null;
         Session session = sessionFactory.openSession();
         String query = "from User where name = :name";
@@ -96,27 +117,6 @@ public  class UserDaoImpl implements UserDao {
         return user;
     }
     
-    public User findByName(String name) {
-        User user = null;
-        Session session = sessionFactory.openSession();
-        String query = "from User where name = :name";
-        Transaction transaction = null;
-        try {
-            transaction = session.beginTransaction();
-            Query _query = session.createQuery(query);
-            _query.setParameter("name", name);
-            user = (User) _query.uniqueResult();
-            transaction.commit();
-        } catch (RuntimeException ex) {
-            if (transaction != null)
-                transaction.rollback();
-            throw ex;
-        } finally {
-            session.close();
-        }
-        return user;
-    }
-
     public User findByEmail(String email) {
         User user = null;
         Session session = sessionFactory.openSession();
@@ -226,7 +226,7 @@ public  class UserDaoImpl implements UserDao {
 //            userDao.update(user);
 //            userDao.delete(user);
             
-            User user = userDao.findByNameNoLazily("Alex");
+            User user = userDao.findUserByNameDepEvents("Alex");
             Set<Event> events = user.getEvents();
             for(Event ev : events) {
                 System.out.println(ev);

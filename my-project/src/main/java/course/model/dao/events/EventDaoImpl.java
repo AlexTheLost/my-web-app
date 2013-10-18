@@ -96,6 +96,28 @@ public class EventDaoImpl implements EventDao {
         return event;
     }
 
+    public Event findByTitleDepUsers(String title) {
+        Event event = null;
+        Session session = sessionFactory.openSession();
+        String query = "from Event where title = :title";
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Query _query = session.createQuery(query);
+            _query.setParameter("title", title);
+            event = (Event) _query.uniqueResult();
+            Hibernate.initialize(event.getUsers());
+            transaction.commit();
+        } catch (RuntimeException ex) {
+            if (transaction != null)
+                transaction.rollback();
+            throw ex;
+        } finally {
+            session.close();
+        }
+        return event;
+    }
+
     public boolean titleIsOccupied(String title) {
         // TODO rewriting HQL
         Event event = null;
@@ -124,7 +146,6 @@ public class EventDaoImpl implements EventDao {
 
     @SuppressWarnings("unchecked")
     public List<Event> getAll() {
-        // TODO Auto-generated method stub
         List<Event> events = null;
         Session session = sessionFactory.openSession();
         String query = "from Event";
@@ -154,7 +175,6 @@ public class EventDaoImpl implements EventDao {
                 dateBrithday = (java.util.Date) textDateBrithday
                         .parse("2014-07-30");
             } catch (ParseException ex) {
-                // TODO Auto-generated catch block
                 ex.printStackTrace();
                 throw ex;
             }
