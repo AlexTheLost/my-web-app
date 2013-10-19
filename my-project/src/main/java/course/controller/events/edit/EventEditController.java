@@ -21,6 +21,7 @@ import course.model.dao.events.EventDao;
 import course.model.dao.events.EventDaoImpl;
 import course.model.domain.categories.Category;
 import course.model.domain.events.Event;
+import course.model.domain.users.User;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -32,10 +33,10 @@ public class EventEditController {
     List<Category> allCategories = new CategoriesDaoImpl().getAll();
 
     @RequestMapping(method = RequestMethod.GET)
-    public String addEvent(
+    public String editEvent(
             @RequestParam(value = "eventTitle") String eventTitle,
             ModelMap model) {
-        EventEditForm eventEditForm = new EventEditForm();
+        EventEditForm eventEditForm = new EventEditForm(getEvent(eventTitle));
         model.put("eventTitle", eventTitle);
         model.put("eventEditForm", eventEditForm);
         model.put("allCategories", allCategories);
@@ -46,7 +47,7 @@ public class EventEditController {
     private EventEditValidator eventEditValidator;
 
     @RequestMapping(method = RequestMethod.POST)
-    public String processAddEvent(
+    public String processEditEvent(
             @RequestParam(value = "eventTitle") String eventTitle,
             ModelMap model, EventEditForm eventEditForm, BindingResult result,
             final RedirectAttributes redirectAttributes) {
@@ -76,7 +77,7 @@ public class EventEditController {
     }
 
     private Set<Category> eventCategories(EventEditForm eventEditForm) {
-        List<String> categoriesName = eventEditForm.getCategories();
+        Set<String>  categoriesName = eventEditForm.getCategories();
         Set<Category> eventCategories = new HashSet<Category>();
         for (String categoryName : categoriesName) {
             for (Category category : this.allCategories) {
@@ -99,4 +100,48 @@ public class EventEditController {
         }
         return utilDate;
     }
+
+    private Event getEvent(String eventTitle) {
+        EventDao eDao = new EventDaoImpl();
+        Event event = eDao.findByTitleDep(eventTitle);
+        System.out.println(event);
+        return event;
+    }
+
+    public class EventData {
+
+        private String      title;
+        private String      date;
+        private String      description;
+        private Set<String> categories = new HashSet<String>();
+
+        public EventData(Event event) {
+            this.title = event.getTitle();
+            // 2013-09-29
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            this.date = sdf.format(event.getDate());
+            this.description = event.getDescription();
+            for (Category c : event.getCategories()) {
+                this.categories.add(c.getName());
+            }
+        }
+
+        public String getTitle() {
+            return this.title;
+        }
+
+        public String getDate() {
+            return this.date;
+        }
+
+        public String getDescription() {
+            return this.description;
+        }
+
+        public Set<String> getCategories() {
+            return this.categories;
+        }
+
+    }
+
 }

@@ -27,12 +27,11 @@ import course.model.domain.categories.Category;
 public class EventsViewController {
 
     List<Category> allCategories = new CategoriesDaoImpl().getAll();
-    
+
     @RequestMapping(method = RequestMethod.GET)
     public String addEvent(
             @RequestParam(value = "eventTitle") String eventTitle,
             ModelMap model) {
-        System.out.println("event_page - eventTitle: " + eventTitle);
         EventDao eDao = new EventDaoImpl();
         Event event = eDao.findByTitle(eventTitle);
         model.put("event", event);
