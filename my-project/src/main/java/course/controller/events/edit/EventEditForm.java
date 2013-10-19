@@ -10,7 +10,8 @@ import course.model.domain.events.Event;
 
 public class EventEditForm {
 
-    private String       title;
+    private String       oldTitle;
+    private String       newTitle;
     private String       date;
     private String       description;
     private Set<String> categories = new HashSet<String>();
@@ -20,8 +21,8 @@ public class EventEditForm {
     }
 
     public EventEditForm(Event event) {
-        System.out.println("!!!!!!!!: " + event);
-        this.title = event.getTitle();
+        this.oldTitle = event.getTitle();
+        this.newTitle = event.getTitle();
         // 2013-09-29
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         this.date = sdf.format(event.getDate());
@@ -31,12 +32,20 @@ public class EventEditForm {
         }
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setOldTitle(String oldTitle) {
+        this.oldTitle = oldTitle;
     }
 
-    public String getTitle() {
-        return this.title;
+    public String getOldTitle() {
+        return this.oldTitle;
+    }
+    
+    public void setNewTitle(String newTitle) {
+        this.newTitle = newTitle;
+    }
+
+    public String getNewTitle() {
+        return this.newTitle;
     }
 
     public void setDate(String date) {

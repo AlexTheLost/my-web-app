@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -17,7 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import course.model.dao.categories.CategoriesDaoImpl;
 import course.model.dao.events.EventDao;
 import course.model.dao.events.EventDaoImpl;
+import course.model.dao.users.UserDao;
+import course.model.dao.users.UserDaoImpl;
 import course.model.domain.events.Event;
+import course.model.domain.users.User;
 import course.model.domain.categories.Category;
 
 @Controller
@@ -65,6 +70,23 @@ public class EventsCreateController {
         event.setCategories(eventCategories(eventForm));
         EventDao eventDao = new EventDaoImpl();
         eventDao.save(event);
+        setEventForCurrentUser(event);
+    }
+
+    private void setEventForCurrentUser(Event event) {
+        String userName = getCurrentUserName();
+        UserDao uDao = new UserDaoImpl();
+        User user = uDao.findUserByNameDepEvents(userName);
+        Set<Event> userEvents = user.getEvents();
+        userEvents.add(event);
+        user.setEvents(userEvents);
+        uDao.update(user);
+    }
+
+    private String getCurrentUserName() {
+        Authentication auth = SecurityContextHolder.getContext()
+                .getAuthentication();
+        return auth.getName();
     }
 
     private Set<Category> eventCategories(EventForm eventForm) {

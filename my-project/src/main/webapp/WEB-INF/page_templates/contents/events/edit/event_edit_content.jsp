@@ -11,17 +11,17 @@
             class="form-signin">
 
             <div class="col-md-12" style="margin: 20px 0px 20px;">
-                <label class="form-label"><spring:message code="label.event.edit_event" />: ${eventTitle}</label> <input
-                    type="text" name="eventTitle" value="${eventTitle}" hidden="true" />
+                <label class="form-label"><spring:message code="label.event.edit_event" />:
+                    ${eventEditForm.oldTitle}</label>
+                <form:input path="oldTitle" type="text" hidden="true"/>
             </div>
 
             <hr>
 
             <div class="col-md-12" style="margin: 20px 0px 20px;">
                 <label class="form-label"><spring:message code="label.event.title" />:</label>
-                <form:input path="title" type="text" class="form-control"
-                    style="width: 300px;" />
-                <span class="error"> <form:errors path="title" />
+                <form:input path="newTitle" type="text" class="form-control" style="width: 300px;" />
+                <span class="error"> <form:errors path="newTitle" />
                 </span>
             </div>
 
@@ -30,8 +30,7 @@
             <div class="col-md-12" style="margin: 20px 0px 20px;">
                 <label class="form-label"><spring:message code="label.event.date" />:</label>
                 <div id="datetimepicker" class="input-append date">
-                    <form:input path="date" data-format="yyyy-MM-dd" type="text"
-                        readonly="true" />
+                    <form:input path="date" data-format="yyyy-MM-dd" type="text" readonly="true" />
                     <span class="add-on"> <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
                     </span> <span class="error"> <form:errors path="date" />
                     </span>
@@ -43,8 +42,7 @@
             <div class="col-md-12" style="margin: 20px 0px 20px;">
                 <label class="form-label"><spring:message code="label.event.description" />:</label>
                 <form:textarea path="description" class="form-control clearfix"
-                    style="margin-top: 0px; margin-bottom: 0px; height: 260px;" maxlength="2000"
-                    value="" /> 
+                    style="margin-top: 0px; margin-bottom: 0px; height: 260px;" maxlength="2000" value="" />
                 <span class="error"> <form:errors path="description" />
                 </span>
             </div>

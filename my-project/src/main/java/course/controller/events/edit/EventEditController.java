@@ -37,7 +37,6 @@ public class EventEditController {
             @RequestParam(value = "eventTitle") String eventTitle,
             ModelMap model) {
         EventEditForm eventEditForm = new EventEditForm(getEvent(eventTitle));
-        model.put("eventTitle", eventTitle);
         model.put("eventEditForm", eventEditForm);
         model.put("allCategories", allCategories);
         return "event_edit";
@@ -47,29 +46,26 @@ public class EventEditController {
     private EventEditValidator eventEditValidator;
 
     @RequestMapping(method = RequestMethod.POST)
-    public String processEditEvent(
-            @RequestParam(value = "eventTitle") String eventTitle,
-            ModelMap model, EventEditForm eventEditForm, BindingResult result,
-            final RedirectAttributes redirectAttributes) {
+    public String processEditEvent(ModelMap model, EventEditForm eventEditForm,
+            BindingResult result, final RedirectAttributes redirectAttributes) {
         eventEditValidator.validate(eventEditForm, result);
         if (result.hasErrors()) {
             model.put("allCategories", allCategories);
             return "event_edit";
         }
         try {
-            editEvent(eventTitle, eventEditForm);
+            editEvent(eventEditForm);
         } catch (ParseException e) {
             // TODO go to event_create_unsuccessful
             e.printStackTrace();
         }
-        return "redirect:/event_page?eventTitle=" + eventEditForm.getTitle();
+        return "redirect:/event_page?eventTitle=" + eventEditForm.getNewTitle();
     }
 
-    private void editEvent(String eventTitle, EventEditForm eventeditForm)
-            throws ParseException {
+    private void editEvent(EventEditForm eventeditForm) throws ParseException {
         EventDao eDao = new EventDaoImpl();
-        Event event = eDao.findByTitleDep(eventTitle);
-        event.setTitle(eventeditForm.getTitle());
+        Event event = eDao.findByTitleDep(eventeditForm.getOldTitle());
+        event.setTitle(eventeditForm.getNewTitle());
         event.setDate(stringDateToUtilDate(eventeditForm.getDate()));
         event.setDescription(eventeditForm.getDescription());
         event.setCategories(eventCategories(eventeditForm));
@@ -77,7 +73,7 @@ public class EventEditController {
     }
 
     private Set<Category> eventCategories(EventEditForm eventEditForm) {
-        Set<String>  categoriesName = eventEditForm.getCategories();
+        Set<String> categoriesName = eventEditForm.getCategories();
         Set<Category> eventCategories = new HashSet<Category>();
         for (String categoryName : categoriesName) {
             for (Category category : this.allCategories) {
@@ -104,44 +100,7 @@ public class EventEditController {
     private Event getEvent(String eventTitle) {
         EventDao eDao = new EventDaoImpl();
         Event event = eDao.findByTitleDep(eventTitle);
-        System.out.println(event);
         return event;
-    }
-
-    public class EventData {
-
-        private String      title;
-        private String      date;
-        private String      description;
-        private Set<String> categories = new HashSet<String>();
-
-        public EventData(Event event) {
-            this.title = event.getTitle();
-            // 2013-09-29
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            this.date = sdf.format(event.getDate());
-            this.description = event.getDescription();
-            for (Category c : event.getCategories()) {
-                this.categories.add(c.getName());
-            }
-        }
-
-        public String getTitle() {
-            return this.title;
-        }
-
-        public String getDate() {
-            return this.date;
-        }
-
-        public String getDescription() {
-            return this.description;
-        }
-
-        public Set<String> getCategories() {
-            return this.categories;
-        }
-
     }
 
 }

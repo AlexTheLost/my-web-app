@@ -25,14 +25,15 @@ public class EventEditValidator implements Validator {
 
         EventDao eventDao = new EventDaoImpl();
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title",
-                "title.empty", "Username must not be empty.");
-        String title = eventForm.getTitle();
-        if (title.length() > 16) {
-            errors.rejectValue("title", "title.tooLong",
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "newTitle",
+                "newTitle.empty", "Username must not be empty.");
+        String newTitle = eventForm.getNewTitle();
+        String oldTitle = eventForm.getOldTitle();
+        if (newTitle.length() > 16) {
+            errors.rejectValue("newTitle", "title.tooLong",
                     "Username must not more than 16 characters.");
-        } else if (eventDao.titleIsOccupied(title)) {
-            errors.rejectValue("title", "title.occupied", "title is occupied.");
+        } else if (!oldTitle.equals(newTitle) && eventDao.titleIsOccupied(newTitle)) {
+            errors.rejectValue("newTitle", "title.occupied", "title is occupied.");
         }
 
         String date = eventForm.getDate();

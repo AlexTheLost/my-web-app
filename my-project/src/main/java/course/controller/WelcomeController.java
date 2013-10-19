@@ -27,11 +27,6 @@ public class WelcomeController {
         max = allEvents.size();
     }
 
-    WelcomeController() {
-        allEvents = getAllEventsOrderByData();
-        max = allEvents.size();
-    }
-
     private String hidePrev = "hidePrev";
     private String hideNext = "hideNext";
     private String hideNone = "hideNone";
