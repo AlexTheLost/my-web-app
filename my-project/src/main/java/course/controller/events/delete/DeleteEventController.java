@@ -26,8 +26,7 @@ public class DeleteEventController {
         event.getUsers().clear();
         eDao.update(event);
         eDao.delete(event);
-        System.out.println("DELLL");
-        return "welcome";
+        return "redirect:/welcome";
     }
 
 }

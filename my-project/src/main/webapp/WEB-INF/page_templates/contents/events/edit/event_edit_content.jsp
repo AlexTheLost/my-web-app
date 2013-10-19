@@ -7,9 +7,9 @@
 
     <div class="row">
 
-        <form:form action="${pageContext.request.contextPath}/user/event_create" method="post" commandName="eventForm"
+        <form:form action="${pageContext.request.contextPath}/user/event_edit" method="post" commandName="eventEditForm"
             class="form-signin">
-
+            
             <div class="col-md-12" style="margin: 20px 0px 20px;">
                 <label class="form-label"><spring:message code="label.event.edit_event" />: ${eventTitle}</label> <input
                     type="text" name="eventTitle" value="${eventTitle}" hidden="true" />

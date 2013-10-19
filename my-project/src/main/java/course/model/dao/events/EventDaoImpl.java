@@ -139,6 +139,29 @@ public class EventDaoImpl implements EventDao {
         return event;
     }
 
+    public Event findByTitleDep(String title) {
+        Event event = null;
+        Session session = sessionFactory.openSession();
+        String query = "from Event where title = :title";
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Query _query = session.createQuery(query);
+            _query.setParameter("title", title);
+            event = (Event) _query.uniqueResult();
+            Hibernate.initialize(event.getUsers());
+            Hibernate.initialize(event.getCategories());
+            transaction.commit();
+        } catch (RuntimeException ex) {
+            if (transaction != null)
+                transaction.rollback();
+            throw ex;
+        } finally {
+            session.close();
+        }
+        return event;
+    }
+
     public boolean titleIsOccupied(String title) {
         // TODO rewriting HQL
         Event event = null;
@@ -219,7 +242,7 @@ public class EventDaoImpl implements EventDao {
                 ex.printStackTrace();
                 throw ex;
             }
-//            Event event = eventDao.findByTitle("SecondEvent");
+            // Event event = eventDao.findByTitle("SecondEvent");
             // User user = userDao.findByName("Alex");
             // Set<User> users = new HashSet<User>();
             // users.add(user);
@@ -246,24 +269,24 @@ public class EventDaoImpl implements EventDao {
             // eventDao.delete(event);
 
             // System.out.println(event);
-            
+
             Event event = eventDao.findByTitleDepCategories("OOO");
             event.getCategories().clear();
             eventDao.update(event);
             eventDao.delete(event);
-//            event.getUsers().clear();
-//            eventDao.save(event);
-            
-//
-//            List<Event> events = eventDao.getAll();
-//            for (Event ev : events) {
-//                System.out.println(ev);
-//            }
-//
-//            events = eventDao.getAllOrderByDate();
-//            for (Event ev : events) {
-//                System.out.println(ev);
-//            }
+            // event.getUsers().clear();
+            // eventDao.save(event);
+
+            //
+            // List<Event> events = eventDao.getAll();
+            // for (Event ev : events) {
+            // System.out.println(ev);
+            // }
+            //
+            // events = eventDao.getAllOrderByDate();
+            // for (Event ev : events) {
+            // System.out.println(ev);
+            // }
         }
     }
 

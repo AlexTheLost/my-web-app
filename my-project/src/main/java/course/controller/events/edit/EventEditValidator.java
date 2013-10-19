@@ -6,7 +6,12 @@ import java.text.SimpleDateFormat;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
+import org.springframework.stereotype.Component;
 
+import course.model.dao.events.EventDao;
+import course.model.dao.events.EventDaoImpl;
+
+@Component
 public class EventEditValidator implements Validator {
 
     private final int maxDescrLen = 2000;
@@ -17,6 +22,19 @@ public class EventEditValidator implements Validator {
 
     public void validate(Object target, Errors errors) {
         EventEditForm eventForm = (EventEditForm) target;
+
+        EventDao eventDao = new EventDaoImpl();
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title",
+                "title.empty", "Username must not be empty.");
+        String title = eventForm.getTitle();
+        if (title.length() > 16) {
+            errors.rejectValue("title", "title.tooLong",
+                    "Username must not more than 16 characters.");
+        } else if (eventDao.titleIsOccupied(title)) {
+            errors.rejectValue("title", "title.occupied", "title is occupied.");
+        }
+
         String date = eventForm.getDate();
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "date", "date.empty",
                 "Username must not be empty.");

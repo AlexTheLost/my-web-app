@@ -3,11 +3,20 @@ package course.controller.events.edit;
 import java.util.List;
 
 public class EventEditForm {
-
+    
+    private String       title;
     private String       date;
     private String       description;
     private List<String> categories;
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+    
     public void setDate(String date) {
         this.date = date;
     }

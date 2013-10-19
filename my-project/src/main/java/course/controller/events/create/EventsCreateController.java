@@ -51,8 +51,7 @@ public class EventsCreateController {
             // TODO go to event_create_unsuccessful
             e.printStackTrace();
         }
-
-        return "welcome";
+        return "redirect:/event_page?eventTitle=" + eventForm.getTitle();
     }
 
     private void createEvent(EventForm eventForm) throws ParseException {

@@ -21,7 +21,9 @@ import course.model.dao.events.EventDao;
 import course.model.dao.events.EventDaoImpl;
 import course.model.domain.categories.Category;
 import course.model.domain.events.Event;
+
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping(value = "/user/event_edit")
@@ -33,20 +35,22 @@ public class EventEditController {
     public String addEvent(
             @RequestParam(value = "eventTitle") String eventTitle,
             ModelMap model) {
-        EventForm eventForm = new EventForm();
+        EventEditForm eventEditForm = new EventEditForm();
         model.put("eventTitle", eventTitle);
-        model.put("eventForm", eventForm);
+        model.put("eventEditForm", eventEditForm);
         model.put("allCategories", allCategories);
         return "event_edit";
     }
 
     @Autowired
-    private EventValidator eventValidator;
+    private EventEditValidator eventEditValidator;
 
     @RequestMapping(method = RequestMethod.POST)
-    public String processAddEvent(@RequestParam(value="eventTitle") String eventTitle, ModelMap model, EventEditForm eventEditForm,
-            BindingResult result) {
-        eventValidator.validate(eventEditForm, result);
+    public String processAddEvent(
+            @RequestParam(value = "eventTitle") String eventTitle,
+            ModelMap model, EventEditForm eventEditForm, BindingResult result,
+            final RedirectAttributes redirectAttributes) {
+        eventEditValidator.validate(eventEditForm, result);
         if (result.hasErrors()) {
             model.put("allCategories", allCategories);
             return "event_edit";
@@ -57,17 +61,16 @@ public class EventEditController {
             // TODO go to event_create_unsuccessful
             e.printStackTrace();
         }
-        return "redirect:event_page?eventTitle=" + eventTitle;
+        return "redirect:/event_page?eventTitle=" + eventEditForm.getTitle();
     }
 
-    private void editEvent(String eventTitle, EventEditForm eventeditForm) throws ParseException {
-        Date utilDate = stringDateToUtilDate(eventeditForm.getDate());
-        String description = eventeditForm.getDescription();
+    private void editEvent(String eventTitle, EventEditForm eventeditForm)
+            throws ParseException {
         EventDao eDao = new EventDaoImpl();
-        Event event = eDao.findByTitleDepCategories(eventTitle);
-        event.setTitle(eventTitle);
-        event.setDate(utilDate);
-        event.setDescription(description);
+        Event event = eDao.findByTitleDep(eventTitle);
+        event.setTitle(eventeditForm.getTitle());
+        event.setDate(stringDateToUtilDate(eventeditForm.getDate()));
+        event.setDescription(eventeditForm.getDescription());
         event.setCategories(eventCategories(eventeditForm));
         eDao.update(event);
     }

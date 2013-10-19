@@ -22,6 +22,11 @@ public class WelcomeController {
     private final int   first       = 0;
     private int         max         = 0;
 
+    private void updateAllEvent() {
+        allEvents = getAllEventsOrderByData();
+        max = allEvents.size();
+    }
+
     WelcomeController() {
         allEvents = getAllEventsOrderByData();
         max = allEvents.size();
@@ -33,6 +38,7 @@ public class WelcomeController {
 
     @RequestMapping(value = { "/", "welcome" }, method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
+        updateAllEvent();
         if (!model.containsAttribute("events")) {
             int end = getEndIndex(first);
             List<Event> events = allEvents.subList(first, end);
@@ -50,6 +56,7 @@ public class WelcomeController {
     public String eventsViewer(@RequestParam("route") String route,
             @RequestParam("end") int index, ModelMap model,
             final RedirectAttributes redirectAttributes) {
+        updateAllEvent();
         if (route.equals(prev)) {
             int start = getStartIndex(index);
             int end = getEndIndex(start);

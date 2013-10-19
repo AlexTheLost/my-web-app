@@ -17,6 +17,8 @@ public interface EventDao {
     public Event findByTitleDepUsers(String title);
 
     public Event findByTitleDepCategories(String title);
+    
+    public Event findByTitleDep(String title);
 
     public boolean titleIsOccupied(String title);
 

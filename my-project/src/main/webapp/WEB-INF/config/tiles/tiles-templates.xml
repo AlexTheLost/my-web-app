@@ -104,5 +104,5 @@
         <put-attribute name="content"
             value="/WEB-INF/page_templates/contents/events/edit/event_edit_content.jsp" />
     </definition>
-    
+
 </tiles-definitions>
