@@ -16,7 +16,7 @@ import course.model.domain.events.Event;
 import course.model.domain.users.User;
 import course.model.persistence.HibernateUtil;
 
-public  class UserDaoImpl implements UserDao {
+public class UserDaoImpl implements UserDao {
 
     private SessionFactory sessionFactory = null;
 
@@ -71,7 +71,7 @@ public  class UserDaoImpl implements UserDao {
             session.close();
         }
     }
-    
+
     public User findByName(String name) {
         User user = null;
         Session session = sessionFactory.openSession();
@@ -115,6 +115,7 @@ public  class UserDaoImpl implements UserDao {
         }
         return user;
     }
+
     // TODO rewrite to get userEvents and e.t.c. SET's
     public User findUserByNameDepEvents(String name) {
         User user = null;
@@ -137,7 +138,7 @@ public  class UserDaoImpl implements UserDao {
         }
         return user;
     }
-    
+
     public User findByEmail(String email) {
         User user = null;
         Session session = sessionFactory.openSession();
@@ -230,38 +231,63 @@ public  class UserDaoImpl implements UserDao {
             return false;
         }
     }
-    
+
+    public List<User> getUsersAndManager() {
+        List<User> users = null;
+        Session session = sessionFactory.openSession();
+        String query = "from User where role != 2 order by role";
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            users = session.createQuery(query).list();
+            transaction.commit();
+        } catch (RuntimeException ex) {
+            if (transaction != null)
+                transaction.rollback();
+            throw ex;
+        } finally {
+            session.close();
+        }
+        return users;
+    }
+
     public static class Test {
         public static void main(String[] args) {
             UserDao userDao = new UserDaoImpl();
             EventDao eventDao = new EventDaoImpl();
             Event firstEvent = eventDao.findByTitle("FirstEvent");
-            
-//            User user = new User("Alex", "email", "pass");
-//            user.setEvent(event);
-//            userDao.save(user);
-            
-//            User user = userDao.findByName("Alex");
-//            Set<Event> events = null;
-//            user.setEvents(events);
-//            userDao.update(user);
-//            userDao.delete(user);
-            
-            User user = userDao.findUserByNameDepEvents("Alex");
-            Set<Event> events = user.getEvents();
-            for(Event ev : events) {
-                System.out.println(ev);
+
+            // User user = new User("Alex", "email", "pass");
+            // user.setEvent(event);
+            // userDao.save(user);
+
+            // User user = userDao.findByName("Alex");
+            // Set<Event> events = null;
+            // user.setEvents(events);
+            // userDao.update(user);
+            // userDao.delete(user);
+
+//            User user = userDao.findUserByNameDepEvents("Alex");
+//            Set<Event> events = user.getEvents();
+//            for (Event ev : events) {
+//                System.out.println(ev);
+//            }
+
+            List<User> users = userDao.getUsersAndManager();
+            for (User u : users) {
+                System.out.println(u);
             }
             
-//          Event secondEvent = eventDao.findByTitle("SecondEvent");
-//            System.out.println(secondEvent);
-//            User user = userDao.findByName("Alex");
-//            System.out.println(user);
-//            Set<Event> events = new HashSet<Event>();
-//            events.add(secondEvent);
-//            user.setEvents(events);
-//            userDao.update(user);
-            
+            // Event secondEvent = eventDao.findByTitle("SecondEvent");
+            // System.out.println(secondEvent);
+            // User user = userDao.findByName("Alex");
+            // System.out.println(user);
+            // Set<Event> events = new HashSet<Event>();
+            // events.add(secondEvent);
+            // user.setEvents(events);
+            // userDao.update(user);
+
         }
     }
+
 }
