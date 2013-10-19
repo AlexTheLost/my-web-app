@@ -36,7 +36,7 @@
                         </div>
                     </sec:authorize>
                     <span >
-                        <a href="?lang=en">en</a> | <a href="?lang=ru">ru</a>
+                        <a href="${pageContext.request.contextPath}/welcome?lang=en">en</a> | <a href="${pageContext.request.contextPath}/welcome?lang=ru">ru</a>
                     </span>
                 </div>
             </div>

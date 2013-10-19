@@ -84,18 +84,25 @@
 
     <!-- Events -->
     <definition name="event_create" extends="base_template">
-        <put-attribute name="title" value="User account" />
+        <put-attribute name="title" value="Event create" />
         <put-attribute name="head"
             value="/WEB-INF/page_templates/contents/events/create/event_create_head.jsp" />
         <put-attribute name="content"
             value="/WEB-INF/page_templates/contents/events/create/event_create_content.jsp" />
     </definition>
     <definition name="event_page" extends="base_template">
-        <put-attribute name="title" value="User account" />
+        <put-attribute name="title" value="Event page" />
         <put-attribute name="head"
             value="/WEB-INF/page_templates/contents/events/event_page/event_page_head.jsp" />
         <put-attribute name="content"
             value="/WEB-INF/page_templates/contents/events/event_page/event_page_content.jsp" />
     </definition>
-
+    <definition name="event_edit" extends="base_template">
+        <put-attribute name="title" value="Event edit" />
+        <put-attribute name="head"
+            value="/WEB-INF/page_templates/contents/events/create/event_create_head.jsp" />
+        <put-attribute name="content"
+            value="/WEB-INF/page_templates/contents/events/edit/event_edit_content.jsp" />
+    </definition>
+    
 </tiles-definitions>

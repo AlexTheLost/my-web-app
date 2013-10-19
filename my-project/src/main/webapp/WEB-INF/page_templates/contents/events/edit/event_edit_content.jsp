@@ -11,7 +11,8 @@
             class="form-signin">
 
             <div class="col-md-12" style="margin: 20px 0px 20px;">
-                <label class="form-label"><spring:message code="label.event.create" />:</label>
+                <label class="form-label"><spring:message code="label.event.edit_event" />: ${eventTitle}</label> <input
+                    type="text" name="eventTitle" value="${eventTitle}" hidden="true" />
             </div>
 
             <hr>
@@ -48,8 +49,7 @@
             <div class="col-md-12" style="margin: 20px 0px 20px;">
                 <label class="form-label"><spring:message code="label.event.categories" />:</label>
                 <div class="col-md-12" style="margin: 20px 0px 20px;">
-                    <span class="error"> 
-                        <form:errors path="categories" />
+                    <span class="error"> <form:errors path="categories" />
                     </span>
                     <c:forEach items="${allCategories}" var="category">
                         <div class="checkbox">

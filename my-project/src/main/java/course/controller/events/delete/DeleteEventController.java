@@ -1,4 +1,4 @@
-package course.controller.events.change;
+package course.controller.events.delete;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
