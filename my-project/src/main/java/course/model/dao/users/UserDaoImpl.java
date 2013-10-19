@@ -61,7 +61,6 @@ public  class UserDaoImpl implements UserDao {
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            session.beginTransaction();
             session.delete(user);
             transaction.commit();
         } catch (RuntimeException ex) {
@@ -93,7 +92,29 @@ public  class UserDaoImpl implements UserDao {
         }
         return user;
     }
-    
+
+    public User findByNameNoLazy(String name) {
+        User user = null;
+        Session session = sessionFactory.openSession();
+        String query = "from User where name = :name";
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Query _query = session.createQuery(query);
+            _query.setParameter("name", name);
+            user = (User) _query.uniqueResult();
+            Hibernate.initialize(user.getEvents());
+            Hibernate.initialize(user.getCategories());
+            transaction.commit();
+        } catch (RuntimeException ex) {
+            if (transaction != null)
+                transaction.rollback();
+            throw ex;
+        } finally {
+            session.close();
+        }
+        return user;
+    }
     // TODO rewrite to get userEvents and e.t.c. SET's
     public User findUserByNameDepEvents(String name) {
         User user = null;

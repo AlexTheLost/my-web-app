@@ -11,11 +11,11 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="${pageContext.request.contextPath}/welcome"><i class="icon-home"></i><b>&nbsp;<spring:message code="label.home"/></b></a>
                 <sec:authorize access="hasAnyRole('ROLE_USER')">
-                    <a class="navbar-brand" href=""><b><i class="icon-calendar"></i>&nbsp;<spring:message code="label.my_events"/></b></a>
-                    <a href="${pageContext.request.contextPath}/user/event_create"class="navbar-brand" href=""><b><i class="icon-pencil"></i>&nbsp;<spring:message code="label.add_event"/></b></a>
+                    <a href="${pageContext.request.contextPath}/user/user_events" class="navbar-brand" href=""><b><i class="icon-calendar"></i>&nbsp;<spring:message code="label.my_events"/></b></a>
+                    <a href="${pageContext.request.contextPath}/user/event_create" class="navbar-brand" href=""><b><i class="icon-pencil"></i>&nbsp;<spring:message code="label.add_event"/></b></a>
                 </sec:authorize>
                 <sec:authorize access="hasAnyRole('ROLE_MANAGER')">
-                    <a class="navbar-brand" href=""><b><i class="icon-calendar"></i>&nbsp;user management</b></a>
+                    <a href="${pageContext.request.contextPath}/manager/users_manage" class="navbar-brand" href=""><b><i class="icon-group"></i>&nbsp;user management</b></a>
                 </sec:authorize>
             </div>
         </div>

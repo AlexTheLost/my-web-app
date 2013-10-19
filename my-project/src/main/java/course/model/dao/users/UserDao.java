@@ -14,6 +14,8 @@ public interface UserDao {
 
     public User findUserByNameDepEvents(String name);
     
+    public User findByNameNoLazy(String name);
+    
     public User findByName(String name);
     
     public User findByEmail(String email);

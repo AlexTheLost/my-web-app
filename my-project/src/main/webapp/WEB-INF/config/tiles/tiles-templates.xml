@@ -66,7 +66,7 @@
             value="/WEB-INF/page_templates/contents/registration/registration_unsuccessful.jsp" />
     </definition>
 
-    <!-- User account -->
+    <!-- Users -->
     <definition name="user_account" extends="base_template">
         <put-attribute name="title" value="User account" />
         <put-attribute name="head"
@@ -81,7 +81,14 @@
         <put-attribute name="content"
             value="/WEB-INF/page_templates/contents/users/accounts/user_account_content_setting.jsp" />
     </definition>
-
+    <definition name="users_manage" extends="base_template">
+        <put-attribute name="title" value="User account setting" />
+        <put-attribute name="head"
+            value="/WEB-INF/page_templates/contents/users/accounts/default_head_user_account.jsp" />
+        <put-attribute name="content"
+            value="/WEB-INF/page_templates/contents/users/manage/user_manage_content.jsp" />
+    </definition>
+    
     <!-- Events -->
     <definition name="event_create" extends="base_template">
         <put-attribute name="title" value="Event create" />
@@ -103,6 +110,13 @@
             value="/WEB-INF/page_templates/contents/events/create/event_create_head.jsp" />
         <put-attribute name="content"
             value="/WEB-INF/page_templates/contents/events/edit/event_edit_content.jsp" />
+    </definition>
+    <definition name="user_events" extends="base_template">
+        <put-attribute name="title" value="Event edit" />
+        <put-attribute name="head"
+            value="/WEB-INF/page_templates/contents/events/create/event_create_head.jsp" />
+        <put-attribute name="content"
+            value="/WEB-INF/page_templates/contents/users/events/user_events_content.jsp" />
     </definition>
 
 </tiles-definitions>
