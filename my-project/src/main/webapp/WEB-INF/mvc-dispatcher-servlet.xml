@@ -22,7 +22,7 @@
         class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
         <property name="paramName" value="lang" />
     </bean>
-    
+
     <!-- org.springframework.web.servlet.i18n.CookieLocaleResolver -->
     <bean id="localeResolver"
         class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
