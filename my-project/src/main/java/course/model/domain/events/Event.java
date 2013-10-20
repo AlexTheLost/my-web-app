@@ -5,26 +5,45 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.hibernate.annotations.Type;
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.DocumentId;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
+
 import course.model.domain.categories.Category;
 import course.model.domain.users.User;
 
+@Indexed
 public class Event implements Serializable {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = -3104381058522843275L;
+
+    @DocumentId
     private int idEvent;
+
+    @Type(type = "course.controller.services.search.ContentStringType")
+    @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String title;
+
     private Date date = new Date(new java.util.Date().getTime());
+
+    @Type(type = "course.controller.services.search.ContentStringType")
+    @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String description;
+
     private Boolean topicality = true;
+
     private String location;
+
     private Set<Category> categories = new HashSet<Category>();
+
     private Set<User> users = new HashSet<User>();
-    
+
     public Event() {
-        
+
     }
 
     public Event(String title, java.util.Date date, String description) {
@@ -96,11 +115,11 @@ public class Event implements Serializable {
     public void setUser(User user) {
         this.users.add(user);
     }
-    
+
     public Set<User> getUsers() {
         return this.users;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null)

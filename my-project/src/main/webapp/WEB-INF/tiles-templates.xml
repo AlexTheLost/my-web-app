@@ -119,4 +119,13 @@
             value="/WEB-INF/page_templates/contents/users/events/user_events_content.jsp" />
     </definition>
 
+    <!-- Search Result -->
+    <definition name="search_result" extends="base_template">
+        <put-attribute name="title" value="Search result" />
+        <put-attribute name="head"
+            value="/WEB-INF/page_templates/contents/events/create/event_create_head.jsp" />
+        <put-attribute name="content"
+            value="/WEB-INF/page_templates/contents/search/search_result_content.jsp" />
+    </definition>
+    
 </tiles-definitions>

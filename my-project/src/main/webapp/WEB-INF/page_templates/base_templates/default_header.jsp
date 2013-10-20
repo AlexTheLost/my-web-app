@@ -27,7 +27,7 @@
             <div class="navbar-form navbar-right pull-right">
 
                 <div class="form-group btn-sm">
-                    <form action="${pageContext.request.contextPath}/search" method="get" class="form-search text-center" action="#">
+                    <form action="${pageContext.request.contextPath}/search" method="get" class="form-search text-center">
                         <div class="input-append">
                             <input type="search" class="span7 search-query" name="query" autocomplete="off"
                                 placeholder="SEARCH" tabindex="1">

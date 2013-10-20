@@ -14,22 +14,19 @@ import java.util.Set;
 
 public class User implements Serializable {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = -7330260955093711250L;
-    private int               idUser;
-    private String            name;
-    private String            email;
-    private String            password;
-    private Role              role             = Role.ROLE_USER;
-    private Language          language         = Language.RUSSIAN;
-    private Stile             stile            = Stile.DARCK;
-    private int               idAvatar         = 0;
-    private String            shortDescription;
-    private Set<Event>        events           = new HashSet<Event>();
-    private Set<Category>     categories       = new HashSet<Category>();
-    private Set<Avatar>       avatars          = new HashSet<Avatar>();
+    private int idUser;
+    private String name;
+    private String email;
+    private String password;
+    private Role role = Role.ROLE_USER;
+    private Language language = Language.RUSSIAN;
+    private Stile stile = Stile.DARCK;
+    private int idAvatar = 0;
+    private String shortDescription;
+    private Set<Event> events = new HashSet<Event>();
+    private Set<Category> categories = new HashSet<Category>();
+    private Set<Avatar> avatars = new HashSet<Avatar>();
 
     public User() {
     }
@@ -119,7 +116,7 @@ public class User implements Serializable {
     public void setEvents(Set<Event> userEvents) {
         this.events = userEvents;
     }
-    
+
     public void setEvent(Event userEvent) {
         this.events.add(userEvent);
     }
