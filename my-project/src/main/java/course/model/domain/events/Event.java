@@ -5,38 +5,22 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.hibernate.search.annotations.Analyze;
-import org.hibernate.search.annotations.ContainedIn;
-import org.hibernate.search.annotations.DocumentId;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Index;
-import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.Store;
-
 import course.model.domain.categories.Category;
 import course.model.domain.users.User;
 
-@Indexed(index="events")
 public class Event implements Serializable {
 
+    /**
+     * 
+     */
     private static final long serialVersionUID = -3104381058522843275L;
-    
-    @DocumentId
     private int idEvent;
-    
-    @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String title;
-    
     private Date date = new Date(new java.util.Date().getTime());
-
-    @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String description;
-    
     private Boolean topicality = true;
     private String location;
- 
     private Set<Category> categories = new HashSet<Category>();
-
     private Set<User> users = new HashSet<User>();
     
     public Event() {
@@ -48,13 +32,11 @@ public class Event implements Serializable {
         this.date = new Date(date.getTime());
         this.description = description;
     }
-    
-   
+
     public void setIdEvent(int idEvent) {
         this.idEvent = idEvent;
     }
-    
-    
+
     public int getIdEvent() {
         return this.idEvent;
     }
@@ -62,7 +44,7 @@ public class Event implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
-    
+
     public String getTitle() {
         return this.title;
     }

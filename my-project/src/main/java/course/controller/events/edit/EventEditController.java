@@ -45,7 +45,7 @@ public class EventEditController {
     @Autowired
     private EventEditValidator eventEditValidator;
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, produces="text/plain;charset=UTF-8")
     public String processEditEvent(ModelMap model, EventEditForm eventEditForm,
             BindingResult result, final RedirectAttributes redirectAttributes) {
         eventEditValidator.validate(eventEditForm, result);
@@ -59,7 +59,8 @@ public class EventEditController {
             // TODO go to event_create_unsuccessful
             e.printStackTrace();
         }
-        return "redirect:/event_page?eventTitle=" + eventEditForm.getNewTitle();
+        redirectAttributes.addAttribute("eventTitle", eventEditForm.getNewTitle());
+        return "redirect:/event_page";
     }
 
     private void editEvent(EventEditForm eventeditForm) throws ParseException {

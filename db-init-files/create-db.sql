@@ -20,9 +20,9 @@ CREATE TABLE
 -- test data:
 
 -- -- into table users:
-INSERT INTO users (name, email, password, role) VALUES('user', 'user@test.ru', 'user', '0');
-INSERT INTO users (name, email, password, role) VALUES('manager', 'manager@test.ru', 'manager', '1');
-INSERT INTO users (name, email, password, role) VALUES('admin', 'admin@test.ru', 'admin', '2');
+INSERT INTO users (name, email, password, role) VALUES('user', 'user@test.ru', '1', '0');
+INSERT INTO users (name, email, password, role) VALUES('manager', 'manager@test.ru', '1', '1');
+INSERT INTO users (name, email, password, role) VALUES('admin', 'admin@test.ru', '1', '2');
 
 -- -- into table categories:
 INSERT INTO categories (name) VALUES('work');

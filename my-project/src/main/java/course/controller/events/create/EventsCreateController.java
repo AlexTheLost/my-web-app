@@ -17,6 +17,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import course.model.dao.categories.CategoriesDaoImpl;
 import course.model.dao.events.EventDao;
@@ -46,19 +47,21 @@ public class EventsCreateController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String processAddEvent(ModelMap model, EventForm eventForm,
-            BindingResult result) {
+            BindingResult result, final RedirectAttributes redirectAttributes) {
         eventValidator.validate(eventForm, result);
         if (result.hasErrors()) {
             model.put("allCategories", allCategories);
             return "event_create";
         }
+        System.out.println("event: " + eventForm.getTitle());
         try {
             createEvent(eventForm);
         } catch (ParseException e) {
             // TODO go to event_create_unsuccessful
             e.printStackTrace();
         }
-        return "redirect:/event_page?eventTitle=" + eventForm.getTitle();
+        redirectAttributes.addAttribute("eventTitle", eventForm.getTitle());
+        return "redirect:/event_page";
     }
 
     private void createEvent(EventForm eventForm) throws ParseException {

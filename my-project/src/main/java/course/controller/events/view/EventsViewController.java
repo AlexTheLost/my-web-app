@@ -1,6 +1,7 @@
 package course.controller.events.view;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.security.core.Authentication;
@@ -32,18 +33,38 @@ public class EventsViewController {
     public String addEvent(
             @RequestParam(value = "eventTitle") String eventTitle,
             ModelMap model) {
+        model.putAll(getOptionsForUser(eventTitle));
+        model.put("event", getEvent(eventTitle));
+        return "event_page";
+    }
+
+    private Event getEvent(String eventTitle) {
         EventDao eDao = new EventDaoImpl();
-        Event event = eDao.findByTitle(eventTitle);
-        model.put("event", event);
+        System.out.println("eventTitle:" + eventTitle);
+        Event event = eDao.findByTitleDep(eventTitle);
+        return event;
+    }
+    private ModelMap getOptionsForUser(String eventTitle) {
         String userName = getCurrentUserName();
+        ModelMap model = new ModelMap();
         if (!userName.equals("anonymousUser")) {
-            if (ifUserMemberEvent(userName, eventTitle)
-                    || ifUserHaveAuthorities())
+            boolean member = ifUserMemberEvent(userName, eventTitle);
+            boolean authority = ifUserHaveAuthorities();
+            if (member || authority) {
                 model.put("modify", true);
+            } else {
+                model.put("modify", false);
+            }
+            if (member) {
+                model.put("member", true);
+            } else {
+                model.put("member", false);
+            }
         } else {
             model.put("modify", false);
+            model.put("member", false);
         }
-        return "event_page";
+        return model;
     }
 
     private String getCurrentUserName() {
