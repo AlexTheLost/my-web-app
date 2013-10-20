@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import course.controller.events.create.EventForm;
 import course.controller.events.create.EventValidator;
+import course.controller.services.search.SearchService;
 import course.model.dao.categories.CategoriesDaoImpl;
 import course.model.dao.events.EventDao;
 import course.model.dao.events.EventDaoImpl;
@@ -63,6 +64,9 @@ public class EventEditController {
         return "redirect:/event_page";
     }
 
+    @Autowired
+    private SearchService searchService;
+    
     private void editEvent(EventEditForm eventeditForm) throws ParseException {
         EventDao eDao = new EventDaoImpl();
         Event event = eDao.findByTitleDep(eventeditForm.getOldTitle());
@@ -71,6 +75,7 @@ public class EventEditController {
         event.setDescription(eventeditForm.getDescription());
         event.setCategories(eventCategories(eventeditForm));
         eDao.update(event);
+        searchService.buildIndex();
     }
 
     private Set<Category> eventCategories(EventEditForm eventEditForm) {

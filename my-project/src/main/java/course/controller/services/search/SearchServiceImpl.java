@@ -4,10 +4,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.CacheMode;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.search.FullTextSession;
 import org.hibernate.search.Search;
+import org.hibernate.search.batchindexing.MassIndexerProgressMonitor;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.springframework.stereotype.Service;
@@ -23,15 +25,16 @@ public class SearchServiceImpl implements SearchService {
     public void buildIndex() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         FullTextSession fullTextSession;
-        Transaction tx;
         fullTextSession = Search.getFullTextSession(session);
+        Transaction tx = fullTextSession.beginTransaction();
         try {
             fullTextSession.createIndexer().startAndWait();
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        tx = fullTextSession.beginTransaction();
+        // .startAndWait();
+
         tx.commit();
         session.close();
     }
@@ -61,6 +64,7 @@ public class SearchServiceImpl implements SearchService {
     public static void main(String[] args) {
         SearchService ssi = new SearchServiceImpl();
         ssi.buildIndex();
+        System.out.println(ssi.search("33"));
     }
 
 }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import course.controller.services.search.SearchService;
 import course.model.dao.categories.CategoriesDaoImpl;
 import course.model.dao.events.EventDao;
 import course.model.dao.events.EventDaoImpl;
@@ -63,6 +64,9 @@ public class EventsCreateController {
         return "redirect:/event_page";
     }
 
+    @Autowired
+    private SearchService searchService;
+    
     private void createEvent(EventForm eventForm) throws ParseException {
         String title = eventForm.getTitle();
         Date utilDate = stringDateToUtilDate(eventForm.getDate());
@@ -74,6 +78,7 @@ public class EventsCreateController {
         event.setCategories(eventCategories(eventForm));
         EventDao eventDao = new EventDaoImpl();
         eventDao.save(event);
+        searchService.buildIndex();
         setEventForCurrentUser(event);
     }
 

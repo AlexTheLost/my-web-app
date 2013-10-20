@@ -16,11 +16,13 @@
         <!-- <property name="show_sql">true</property> -->
         <property name="hbm2ddl.auto">update</property>
         <property name="hibernate.search.default.directory_provider">filesystem</property>
-        <property name="hibernate.search.default.indexBase">/home/alex</property>
-
+        <property name="hibernate.search.default.indexBase">/home/alex/indexes</property>
+        <property name="hibernate.search.default.exclusive_index_use">false</property>
+        
         <mapping resource="mapping/User.hbm.xml" />
         <mapping resource="mapping/Event.hbm.xml" />
         <mapping resource="mapping/Category.hbm.xml" />
         <mapping resource="mapping/Avatar.hbm.xml" />
+
     </session-factory>
 </hibernate-configuration>

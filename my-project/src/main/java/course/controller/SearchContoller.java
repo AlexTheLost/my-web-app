@@ -18,6 +18,8 @@ public class SearchContoller {
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String getSearchResult(@RequestParam(value = "query") String query,
             ModelMap model) {
+        if (query.isEmpty())
+            return "redirect:/welcome";
         model.put("result", searchService.search(query));
         return "search_result";
     }
