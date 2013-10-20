@@ -14,10 +14,15 @@
         <property name="hibernate.connection.characterEncoding">utf8</property>
         <property name="hibernate.connection.useUnicode">true</property>
         <!-- <property name="show_sql">true</property> -->
-        <property name="hbm2ddl.auto">update</property>
+        <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+
+        <property name="hibernate.search.default.directory_provider">filesystem</property>
+        <property name="hibernate.search.default.indexBase">/home/alex/index</property>
+
         <mapping resource="mapping/User.hbm.xml" />
         <mapping resource="mapping/Event.hbm.xml" />
         <mapping resource="mapping/Category.hbm.xml" />
         <mapping resource="mapping/Avatar.hbm.xml" />
+
     </session-factory>
 </hibernate-configuration>
