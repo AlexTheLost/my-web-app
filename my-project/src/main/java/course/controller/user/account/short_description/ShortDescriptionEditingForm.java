@@ -1,4 +1,4 @@
-package course.controller.user_account.short_description;
+package course.controller.user.account.short_description;
 
 public class ShortDescriptionEditingForm {
 

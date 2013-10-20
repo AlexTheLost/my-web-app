@@ -40,7 +40,6 @@ public class EventsViewController {
 
     private Event getEvent(String eventTitle) {
         EventDao eDao = new EventDaoImpl();
-        System.out.println("eventTitle:" + eventTitle);
         Event event = eDao.findByTitleDep(eventTitle);
         return event;
     }

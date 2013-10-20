@@ -1,4 +1,4 @@
-package course.controller.user_account.password;
+package course.controller.user.account.password;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;

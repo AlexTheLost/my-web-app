@@ -1,10 +1,10 @@
-package course.controller.user_account.short_description;
+package course.controller.user.account.short_description;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import org.springframework.stereotype.Component;
 
-import course.controller.user_account.short_description.ShortDescriptionEditingForm;;
+import course.controller.user.account.short_description.ShortDescriptionEditingForm;
 
 @Component
 public class ShortDescriptionEditingValidator implements Validator {

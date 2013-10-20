@@ -1,4 +1,4 @@
-package course.controller.user_account.email;
+package course.controller.user.account.email;
 
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.stereotype.Component;

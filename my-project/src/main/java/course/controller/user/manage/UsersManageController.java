@@ -1,4 +1,4 @@
-package course.controller.users_manage;
+package course.controller.user.manage;
 
 import java.util.List;
 

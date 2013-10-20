@@ -1,4 +1,4 @@
-package course.controller.user_account.password;
+package course.controller.user.account.password;
 
 public class PasswordEditingForm {
 

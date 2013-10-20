@@ -1,4 +1,4 @@
-package course.controller.user_account;
+package course.controller.user.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,12 +11,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import course.controller.user_account.email.EmailEditingForm;
-import course.controller.user_account.email.UserEmailEditingValidator;
-import course.controller.user_account.password.PasswordEditingForm;
-import course.controller.user_account.password.UserPasswordEditingValidator;
-import course.controller.user_account.short_description.ShortDescriptionEditingForm;
-import course.controller.user_account.short_description.ShortDescriptionEditingValidator;
+import course.controller.user.account.email.EmailEditingForm;
+import course.controller.user.account.email.UserEmailEditingValidator;
+import course.controller.user.account.password.PasswordEditingForm;
+import course.controller.user.account.password.UserPasswordEditingValidator;
+import course.controller.user.account.short_description.ShortDescriptionEditingForm;
+import course.controller.user.account.short_description.ShortDescriptionEditingValidator;
 import course.model.dao.users.UserDaoImpl;
 import course.model.dao.users.UserDao;
 import course.model.domain.users.User;

@@ -1,4 +1,4 @@
-package course.controller.user.user_delete;
+package course.controller.user.user.delete;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -36,8 +36,6 @@ public class BecomeMemberEventContoller {
         Set<Event> events = user.getEvents();
         events.add(event);
         user.setEvents(events);
-        System.out.println("User: " + user);
-        System.out.println("Event: " + event);
         uDao.update(user);
     }
 

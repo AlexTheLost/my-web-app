@@ -1,4 +1,4 @@
-package course.controller.registration;
+package course.controller.user.registration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import course.controller.mail.EmailMessage;
+import course.controller.user.registration.mail.EmailMessage;
 import course.model.dao.users.UserDao;
 import course.model.dao.users.UserDaoImpl;
 import course.model.domain.users.User;

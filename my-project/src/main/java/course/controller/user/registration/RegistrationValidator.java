@@ -1,4 +1,4 @@
-package course.controller.registration;
+package course.controller.user.registration;
 
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.stereotype.Component;

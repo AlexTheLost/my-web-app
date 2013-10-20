@@ -53,7 +53,6 @@ public class EventsCreateController {
             model.put("allCategories", allCategories);
             return "event_create";
         }
-        System.out.println("event: " + eventForm.getTitle());
         try {
             createEvent(eventForm);
         } catch (ParseException e) {

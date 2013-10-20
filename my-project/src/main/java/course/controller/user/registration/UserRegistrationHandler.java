@@ -1,4 +1,4 @@
-package course.controller.registration;
+package course.controller.user.registration;
 
 import org.springframework.validation.BindingResult;
 

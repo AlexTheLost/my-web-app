@@ -1,4 +1,4 @@
-package course.controller.user_events;
+package course.controller.user.events;
 
 import java.util.HashSet;
 import java.util.Set;

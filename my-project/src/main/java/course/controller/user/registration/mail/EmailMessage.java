@@ -1,4 +1,4 @@
-package course.controller.mail;
+package course.controller.user.registration.mail;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
