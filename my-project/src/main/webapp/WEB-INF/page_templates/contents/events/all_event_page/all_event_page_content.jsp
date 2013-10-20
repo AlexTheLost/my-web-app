@@ -31,7 +31,8 @@
                 <p>${event.description}</p>
                 <p>
                 <form action="${pageContext.request.contextPath}/event_page" method="get" class="form-signin">
-                    <button type="submit" name="eventTitle" value="${event.title}" class="btn btn-link btn-sm">View event »</button>
+                    <button type="submit" name="eventTitle" value="${event.title}" class="btn btn-link btn-sm">View
+                        event »</button>
                 </form>
                 </p>
             </div>

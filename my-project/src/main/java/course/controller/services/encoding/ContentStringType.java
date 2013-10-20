@@ -1,4 +1,4 @@
-package course.controller.services.search;
+package course.controller.services.encoding;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.ResultSet;

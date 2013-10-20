@@ -24,13 +24,13 @@ public class Event implements Serializable {
     @DocumentId
     private int idEvent;
 
-    @Type(type = "course.controller.services.search.ContentStringType")
+    @Type(type = "course.controller.services.encoding.ContentStringType")
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String title;
 
     private Date date = new Date(new java.util.Date().getTime());
 
-    @Type(type = "course.controller.services.search.ContentStringType")
+    @Type(type = "course.controller.services.encoding.ContentStringType")
     @Field(index = Index.YES, analyze = Analyze.YES, store = Store.NO)
     private String description;
 

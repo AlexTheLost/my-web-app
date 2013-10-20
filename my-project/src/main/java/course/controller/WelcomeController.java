@@ -11,7 +11,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import course.model.dao.events.EventDao;
 import course.model.dao.events.EventDaoImpl;
-import course.model.domain.users.User;
 import course.model.domain.events.Event;
 
 @Controller
@@ -68,7 +67,7 @@ public class WelcomeController {
             List<Event> events = allEvents.subList(index, end);
             redirectAttributes.addFlashAttribute("events", events);
             redirectAttributes.addFlashAttribute("end", end);
-            if (end > (max + 1 - eventOnPage)) {
+            if (end >= max) {
                 redirectAttributes.addFlashAttribute("hide", hideNext);
             } else {
                 redirectAttributes.addFlashAttribute("hide", hideNone);
@@ -85,7 +84,6 @@ public class WelcomeController {
     }
 
     private int getStartIndex(int index) {
-        // to normalize end index:
         int phantomMax = max + 1;
         if (index > (phantomMax - eventOnPage))
             index = phantomMax;
